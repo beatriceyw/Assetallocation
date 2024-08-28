@@ -27,22 +27,30 @@ def postRebalancing(mp_ver: str = Body(embed=True), risk_gauge: str = Body(embed
         if mp_ver == "MP1":
             if risk_gauge == "low":
                 mp_data = mp_util.mp_set_min_volatility(tickers)
+                
             elif risk_gauge == "medium":
                 mp_data = mp_util.mp_set_medium(tickers)  
+                
             elif risk_gauge == "high":
                 mp_data = mp_util.mp_set_max_sharpe(tickers)
+                
         elif mp_ver == "MP2":
             if risk_gauge == "low":
-                mp_data = mp_util.mp_set_min_volatility(tickers) 
+                mp_data = mp_util.mp_set_min_volatility(tickers)
+                 
             elif risk_gauge == "medium":
                 mp_data = mp_util.mp_set_medium(tickers)  
+                
             elif risk_gauge == "high":
-                mp_data = mp_util.mp_set_max_sharpe(tickers) 
+                mp_data = mp_util.mp_set_max_sharpe(tickers)
+                 
         elif mp_ver == "MP3":
             if risk_gauge == "low":
                 mp_data = mp_util.mp_set_min_volatility(tickers)
+                
             elif risk_gauge == "medium":
                 mp_data = mp_util.mp_set_medium(tickers)   
+                
             elif risk_gauge == "high":
                 mp_data = mp_util.mp_set_max_sharpe(tickers)
 
@@ -56,6 +64,7 @@ def postRebalancing(mp_ver: str = Body(embed=True), risk_gauge: str = Body(embed
                 "port_vol": mp_data.get('port_vol')
             }
             return JSONResponse(content=data, status_code=200)
+        
         else:
             raise HTTPException(status_code=400, detail="ETF details not found")
     

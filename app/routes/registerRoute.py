@@ -30,6 +30,7 @@ def registerRoute(request: Request, firstName: Annotated[str, Form()], lastName:
                             context={'request':request})
         else:
             raise HTTPException(status_code=400, detail="email_doubleCheck get failed")
+        
     except Exception as e:
         log_util.error(f"500 Internal Server Error: {e}")
         raise Exception(status_code=500, detail="Internal Server Error")
@@ -43,8 +44,10 @@ def assetInfoRoute(email: str = Body(embed=True)):
                 "status": response["status"]
             }
             return JSONResponse(content=data, status_code=200)
+        
         else:
             raise HTTPException(status_code=400, detail="email_doubleCheck get failed")
+        
     except Exception as e:
         log_util.error(f"500 Internal Server Error: {e}")
         raise Exception(status_code=500, detail="Internal Server Error")

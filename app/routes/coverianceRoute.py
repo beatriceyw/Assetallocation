@@ -65,6 +65,7 @@ def post_coveriance(mp_ver: Annotated[str, Form()], start_date: Annotated[str, F
                 "covar_html_tbody": mp_data.get("covar_html_tbody")
             }
             return JSONResponse(content=data, status_code=200)
+        
         else:
             raise HTTPException(status_code=400, detail="post_coveriance error")
         

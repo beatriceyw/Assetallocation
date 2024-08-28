@@ -25,24 +25,31 @@ def loginRoute(request: Request, email: Annotated[str, Form()], password: Annota
     try:
         user_info = loginDto.loginRequestDto(email=email)
         response = loginService.get_user_info(user_info)
-        if response:
+        
+        if response is None:
+            data = {
+                "result": 0, 
+                "message": "Login"
+            }
+            return JSONResponse(content=data, status_code=200)
+        
+        else:
             verify_password = hash.verify_password(password, response.password)
+            
             if verify_password:
                 session.create_session(request, email=response.email)
-                return templates.TemplateResponse('dashboard.html', 
-                                    context={'request':request})
+                data = {
+                    "result": 1, 
+                    "message": "redirect"
+                }
+                return JSONResponse(content=data, status_code=200)
+            
             else:
                 data = {
                     "result": 0, 
                     "message": "password"
                 }
                 return JSONResponse(content=data, status_code=200)
-        else:
-            data = {
-                "result": 0, 
-                "message": "Login"
-            }
-            return JSONResponse(content=data, status_code=200)
             
     except Exception as e:
         log_util.error(f"500 Internal Server Error: {e}")

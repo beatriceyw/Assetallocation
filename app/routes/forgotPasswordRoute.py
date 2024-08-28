@@ -47,6 +47,7 @@ def passwordUpdateRoute(email: str = Body(embed=True), password: str = Body(embe
                 "status": response["status"]
             }
             return JSONResponse(content=data, status_code=200)
+        
         else:
             raise HTTPException(status_code=400, detail="Password update failed")
     

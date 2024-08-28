@@ -23,6 +23,7 @@ def assetInfoRoute(request: Request):
 def post_etf_detail(stock_name: str = Body(embed=True)):
     try:
         response = assetInfoService.get_etf_detail(stock_name)
+        
         if response:
             data = {
                 "NAME" : response.get('NAME'),
@@ -35,6 +36,7 @@ def post_etf_detail(stock_name: str = Body(embed=True)):
                 "CUSIP_Code" : response.get('CUSIP_Code')
             }
             return JSONResponse(content=data, status_code=200)
+        
         else:
             raise HTTPException(status_code=400, detail="ETF details not found")
     
