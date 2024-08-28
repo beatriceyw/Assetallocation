@@ -1,0 +1,126 @@
+{% include '/inc/head.html' %}
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% include '/inc/Sidebar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                
+                {% include '/inc/topbar.html' %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Risk Gauge</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
+                    
+                    
+                    
+                    <!-- Risk gauge -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Risk gauge</h6>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div id="handle2" onchange="expectedReturnOnchange(this.lastElementChild.value)"></div>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <th>종목</th>
+                                    <th>비중</th>
+                                    <th>기대수익률</th>
+                                    <th>종목</th>
+                                    <th>비중</th>
+                                    <th>기대수익률</th>
+                                    <tr>
+                                        <td>IGLB(장기투자채권)</td>
+                                        <td class="IGLB_proportion"></td>
+                                        <td class="IGLB_return"></td>
+                                        <td>SPY(S&P500)</td>
+                                        <td class="HYG_proportion"></td>
+                                        <td class="HYG_return"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>HYG(고수익채권)</td>
+                                        <td class="HYG_proportion"></td>
+                                        <td class="HYG_return"></td>
+                                        <td>MBB(모기지)</td>
+                                        <td class="MBB_proportion"></td>
+                                        <td class="MBB_return"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SOXX(반도체)</td>
+                                        <td class="SOXX_proportion"></td>
+                                        <td class="SOXX_return"></td>
+                                        <td>URA(핵)</td>
+                                        <td class="URA_proportion"></td>
+                                        <td class="URA_return"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PAVE(인프라)</td>
+                                        <td class="PAVE_proportion"></td>
+                                        <td class="PAVE_return"></td>
+                                        <!-- <td>국내채권</td>
+                                        <td class="KR10YT_return"></td> -->
+                                    </tr>
+                                    <!-- <tr>
+                                        <td>sharpe Ratio</td>
+                                        <td class="sharpe_ratio"></td>
+                                    </tr> -->
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Efficient Frontier -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Efficient Frontier</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-bar">
+                                <canvas id="myChart" style="width:100%; max-width:700px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; 로보어드바이저 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>      
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% include '/inc/footer.html' %}
+
+</body>

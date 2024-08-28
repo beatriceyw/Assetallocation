@@ -1,0 +1,699 @@
+{% include '/inc/head.html' %}
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% include '/inc/Sidebar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                {% include '/inc/topbar.html' %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Model Portfolio</h1>
+                    <p class="mb-4">Model Portfolio를 구성해볼 수 있는 페이지입니다.
+                    </p>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                            <h6 class="m-0 font-weight-bold text-primary">MP1</h6>
+                            <div class="navbar-nav ml-auto">
+                                <div class="nav-item dropdown">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP1', this.value, assetList_mp1)">
+                                        <option disabled selected>Risk gauge</option>
+                                        <option value="high">상</option>
+                                        <option value="medium">중</option>
+                                        <option value="low">하</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="card-body" id="mp1_selectbox">
+                            <div class="row mr-0 ml-0 mb-2">
+                                <div class="row-col-1">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="custom-select form-control form-control-sm" onchange="add_btn(this)">
+                                        <option disabled selected>자산선택</option>
+                                        <option disabled>=====글로벌자산=====</option>
+                                        <option value="IGLB">IGLB(장기투자채권)</option>
+                                        <option value="HYG">HYG(고수익채권)</option>
+                                        <option value="SPY">SPY(S&P500)</option>
+                                        <option value="MBB">MBB(모기지)</option>
+                                        <option value="SOXX">SOXX(반도체)</option>
+                                        <option value="URA">URA(핵)</option>
+                                        <option value="PAVE">PAVE(인프라)</option>
+                                        <option class="divider" disabled>=====반도체=====</option>
+                                        <option value="005930.KS">삼성전자</option>
+                                        <option value="000660.KS">SK하이닉스</option>
+                                        <option class="divider" disabled>=====반도체장비=====</option>
+                                        <option value="000990.KS">DB하이텍</option>
+                                        <option value="042700.KQ">한미반도체</option>
+                                        <option value="005290.KS">동진쎄미켐</option>
+                                        <option value="240810.KQ">원익IPS</option>
+                                        <option value="011930.KS">신성이엔지</option>
+                                        <option value="058470.KQ">리노공업</option>
+                                        <option value="036930.KQ">주성엔지니어링</option>
+                                        <option value="036830.KQ">솔브레인</option>
+                                        <option value="092220.KQ">KEC</option>
+                                        <option value="067310.KQ">하나마이크론</option>
+                                        <option class="divider" disabled>=====자동차=====</option>
+                                        <option value="005380.KS">현대차</option>
+                                        <option value="000270.KS">기아</option>
+                                        <option value="012330.KS">현대모비스</option>
+                                        <option class="divider" disabled>=====은행=====</option>
+                                        <option value="105560.KS">KB금융</option>
+                                        <option value="055550.KS">신한금융</option>
+                                        <option value="086790.KS">하나금융</option>
+                                        <option class="divider" disabled>=====보험=====</option>
+                                        <option value="032830.KS">삼성생명</option>
+                                        <option value="000810.KS">삼성화재</option>
+                                        <option class="divider" disabled>=====증권=====</option>
+                                        <option value="016360.KS">삼성증권</option>
+                                        <option value="006800.KS">미래에셋</option>
+                                        <option value="005940.KS">NH투자증권</option>
+                                        <option class="divider" disabled>=====정유=====</option>
+                                        <option value="034730.KS">SK이노베이션</option>
+                                        <option value="010950.KS">S-OIL</option>
+                                        <option value="078930.KS">GS</option>
+                                        <option class="divider" disabled>=====화학=====</option>
+                                        <option value="011170.KS">롯데케미칼</option>
+                                        <option value="051910.KS">LG화학</option>
+                                        <option class="divider" disabled>=====음식료=====</option>
+                                        <option value="097950.KS">CJ제일제당</option>
+                                        <option value="004370.KS">농심</option>
+                                        <option value="271560.KS">오리온</option>
+                                        <option class="divider" disabled>=====화장품=====</option>
+                                        <option value="090430.KS">아모레퍼시픽</option>
+                                        <option value="192820.KQ">코스맥스</option>
+                                        <option value="161890.KQ">한국콜마</option>
+                                        <option class="divider" disabled>=====통신=====</option>
+                                        <option value="017670.KS">SK텔레콤</option>
+                                        <option value="030200.KS">KT</option>
+                                        <option value="032640.KS">LG유플러스</option>
+                                        <option class="divider" disabled>=====전기가스=====</option>
+                                        <option value="015760.KS">한국전력</option>
+                                        <option value="036460.KS">한국가스공사</option>
+                                        <option value="051600.KS">한전KPS</option>
+                                        <option class="divider" disabled>=====인터넷=====</option>
+                                        <option value="035420.KS">네이버</option>
+                                        <option value="035720.KS">카카오</option>
+                                        <option class="divider" disabled>=====게임=====</option>
+                                        <option value="036570.KQ">엔씨소프트</option>
+                                        <option value="078340.KQ">컴투스</option>
+                                        <option value="207940.KQ">크래프톤</option>
+                                        <option value="112040.KQ">위메이드</option>
+                                        <option class="divider" disabled>=====배터리=====</option>
+                                        <option value="373220.KS">LG에너지솔루션</option>
+                                        <option value="006400.KS">삼성SDI</option>
+                                        <option value="086520.KQ">에코프로</option>
+                                        <option value="247540.KQ">에코프로비엠</option>
+                                        <option value="003670.KS">포스코퓨처엠</option>
+                                        <option class="divider" disabled>=====바이오=====</option>
+                                        <option value="128940.KS">한미약품</option>
+                                        <option value="000100.KS">유한양행</option>
+                                        <option value="069620.KQ">대웅제약</option>
+                                        <option value="207940.KS">삼성바이오로직스</option>
+                                        <option value="068270.KS">셀트리온</option>
+                                        <option value="185750.KQ">종근당</option>
+                                        <option value="302440.KQ">SK바이오사이언스</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <div class="card mr-3 border-left-primary h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">IGLB(장기투자채권)</div>
+                                                        <input type="hidden" value="IGLB">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-secondary h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">HYG(고수익채권)</div>
+                                                        <input type="hidden" value="HYG">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-success h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">SPY(S&P500)</div>
+                                                        <input type="hidden" value="SPY">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-info h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">MBB(모기지)</div>
+                                                        <input type="hidden" value="MBB">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-warning h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">SOXX(반도체)</div>
+                                                        <input type="hidden" value="SOXX">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-danger h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">URA(핵)</div>
+                                                        <input type="hidden" value="URA">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-dark h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">PAVE(인프라)</div>
+                                                        <input type="hidden" value="PAVE">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex" >
+                            <div id="piechart1" class="mr-5" style="width: 500px; height: 500px;"></div>
+                            <div id="chart_div1" class="ml-5" style="width: 900px; height: 500px;"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th>Sharpe ratio</th>
+                                        <th>포트폴리오 기대수익률</th>
+                                        <th>포트폴리오 변동성</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                            <h6 class="m-0 font-weight-bold text-primary">MP2</h6>
+                            <div class="navbar-nav ml-auto">
+                                <div class="nav-item dropdown">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP2', this.value, assetList_mp2)">
+                                        <option disabled selected>Risk gauge</option>
+                                        <option value="high">상</option>
+                                        <option value="medium">중</option>
+                                        <option value="low">하</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="card-body" id="mp2_selectbox">
+                            <div class="row mr-0 ml-0 mb-2">
+                                <div class="row-col-1">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="custom-select form-control form-control-sm" onchange="add_btn(this)">
+                                        <option disabled selected>자산선택</option>
+                                        <option disabled>=====글로벌자산=====</option>
+                                        <option value="IGLB">IGLB(장기투자채권)</option>
+                                        <option value="HYG">HYG(고수익채권)</option>
+                                        <option value="SPY">SPY(S&P500)</option>
+                                        <option value="MBB">MBB(모기지)</option>
+                                        <option value="SOXX">SOXX(반도체)</option>
+                                        <option value="URA">URA(핵)</option>
+                                        <option value="PAVE">PAVE(인프라)</option>
+                                        <option class="divider" disabled>=====반도체=====</option>
+                                        <option value="005930.KS">삼성전자</option>
+                                        <option value="000660.KS">SK하이닉스</option>
+                                        <option class="divider" disabled>=====반도체장비=====</option>
+                                        <option value="000990.KS">DB하이텍</option>
+                                        <option value="042700.KQ">한미반도체</option>
+                                        <option value="005290.KS">동진쎄미켐</option>
+                                        <option value="240810.KQ">원익IPS</option>
+                                        <option value="011930.KS">신성이엔지</option>
+                                        <option value="058470.KQ">리노공업</option>
+                                        <option value="036930.KQ">주성엔지니어링</option>
+                                        <option value="036830.KQ">솔브레인</option>
+                                        <option value="092220.KQ">KEC</option>
+                                        <option value="067310.KQ">하나마이크론</option>
+                                        <option class="divider" disabled>=====자동차=====</option>
+                                        <option value="005380.KS">현대차</option>
+                                        <option value="000270.KS">기아</option>
+                                        <option value="012330.KS">현대모비스</option>
+                                        <option class="divider" disabled>=====은행=====</option>
+                                        <option value="105560.KS">KB금융</option>
+                                        <option value="055550.KS">신한금융</option>
+                                        <option value="086790.KS">하나금융</option>
+                                        <option class="divider" disabled>=====보험=====</option>
+                                        <option value="032830.KS">삼성생명</option>
+                                        <option value="000810.KS">삼성화재</option>
+                                        <option class="divider" disabled>=====증권=====</option>
+                                        <option value="016360.KS">삼성증권</option>
+                                        <option value="006800.KS">미래에셋</option>
+                                        <option value="005940.KS">NH투자증권</option>
+                                        <option class="divider" disabled>=====정유=====</option>
+                                        <option value="034730.KS">SK이노베이션</option>
+                                        <option value="010950.KS">S-OIL</option>
+                                        <option value="078930.KS">GS</option>
+                                        <option class="divider" disabled>=====화학=====</option>
+                                        <option value="011170.KS">롯데케미칼</option>
+                                        <option value="051910.KS">LG화학</option>
+                                        <option class="divider" disabled>=====음식료=====</option>
+                                        <option value="097950.KS">CJ제일제당</option>
+                                        <option value="004370.KS">농심</option>
+                                        <option value="271560.KS">오리온</option>
+                                        <option class="divider" disabled>=====화장품=====</option>
+                                        <option value="090430.KS">아모레퍼시픽</option>
+                                        <option value="192820.KQ">코스맥스</option>
+                                        <option value="161890.KQ">한국콜마</option>
+                                        <option class="divider" disabled>=====통신=====</option>
+                                        <option value="017670.KS">SK텔레콤</option>
+                                        <option value="030200.KS">KT</option>
+                                        <option value="032640.KS">LG유플러스</option>
+                                        <option class="divider" disabled>=====전기가스=====</option>
+                                        <option value="015760.KS">한국전력</option>
+                                        <option value="036460.KS">한국가스공사</option>
+                                        <option value="051600.KS">한전KPS</option>
+                                        <option class="divider" disabled>=====인터넷=====</option>
+                                        <option value="035420.KS">네이버</option>
+                                        <option value="035720.KS">카카오</option>
+                                        <option class="divider" disabled>=====게임=====</option>
+                                        <option value="036570.KQ">엔씨소프트</option>
+                                        <option value="078340.KQ">컴투스</option>
+                                        <option value="207940.KQ">크래프톤</option>
+                                        <option value="112040.KQ">위메이드</option>
+                                        <option class="divider" disabled>=====배터리=====</option>
+                                        <option value="373220.KS">LG에너지솔루션</option>
+                                        <option value="006400.KS">삼성SDI</option>
+                                        <option value="086520.KQ">에코프로</option>
+                                        <option value="247540.KQ">에코프로비엠</option>
+                                        <option value="003670.KS">포스코퓨처엠</option>
+                                        <option class="divider" disabled>=====바이오=====</option>
+                                        <option value="128940.KS">한미약품</option>
+                                        <option value="000100.KS">유한양행</option>
+                                        <option value="069620.KQ">대웅제약</option>
+                                        <option value="207940.KS">삼성바이오로직스</option>
+                                        <option value="068270.KS">셀트리온</option>
+                                        <option value="185750.KQ">종근당</option>
+                                        <option value="302440.KQ">SK바이오사이언스</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <div class="card mr-3 border-left-primary h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">삼성전자</div>
+                                                        <input type="hidden" value="005930.KS">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-secondary h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">KB금융</div>
+                                                        <input type="hidden" value="105560.KS">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-success h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">셀트리온</div>
+                                                        <input type="hidden" value="068270.KS">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-info h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">삼성SDI</div>
+                                                        <input type="hidden" value="006400.KS">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-warning h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">현대차</div>
+                                                        <input type="hidden" value="005380.KS">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-danger h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">SK텔레콤</div>
+                                                        <input type="hidden" value="017670.KS">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-dark h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">LG화학</div>
+                                                        <input type="hidden" value="051910.KS">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex">
+                            <div id="piechart2" class="mr-5" style="width: 500px; height: 500px;"></div>
+                            <div id="chart_div2" class="ml-5" style="width: 900px; height: 500px;"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th>Sharpe ratio</th>
+                                        <th>포트폴리오 기대수익률</th>
+                                        <th>포트폴리오 변동성</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                            <h6 class="m-0 font-weight-bold text-primary">MP3</h6>
+                            <div class="navbar-nav ml-auto">
+                                <div class="nav-item dropdown">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP3', this.value, assetList_mp3)">
+                                        <option disabled selected>Risk gauge</option>
+                                        <option value="high">상</option>
+                                        <option value="medium">중</option>
+                                        <option value="low">하</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="card-body" id="mp3_selectbox">
+                            <div class="row mr-0 ml-0 mb-2">
+                                <div class="row-col-1">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="custom-select form-control form-control-sm" onchange="add_btn(this)">
+                                        <option disabled selected>자산선택</option>
+                                        <option disabled>=====글로벌자산=====</option>
+                                        <option value="IGLB">IGLB(장기투자채권)</option>
+                                        <option value="HYG">HYG(고수익채권)</option>
+                                        <option value="SPY">SPY(S&P500)</option>
+                                        <option value="MBB">MBB(모기지)</option>
+                                        <option value="SOXX">SOXX(반도체)</option>
+                                        <option value="URA">URA(핵)</option>
+                                        <option value="PAVE">PAVE(인프라)</option>
+                                        <option class="divider" disabled>=====반도체=====</option>
+                                        <option value="005930.KS">삼성전자</option>
+                                        <option value="000660.KS">SK하이닉스</option>
+                                        <option class="divider" disabled>=====반도체장비=====</option>
+                                        <option value="000990.KS">DB하이텍</option>
+                                        <option value="042700.KQ">한미반도체</option>
+                                        <option value="005290.KS">동진쎄미켐</option>
+                                        <option value="240810.KQ">원익IPS</option>
+                                        <option value="011930.KS">신성이엔지</option>
+                                        <option value="058470.KQ">리노공업</option>
+                                        <option value="036930.KQ">주성엔지니어링</option>
+                                        <option value="036830.KQ">솔브레인</option>
+                                        <option value="092220.KQ">KEC</option>
+                                        <option value="067310.KQ">하나마이크론</option>
+                                        <option class="divider" disabled>=====자동차=====</option>
+                                        <option value="005380.KS">현대차</option>
+                                        <option value="000270.KS">기아</option>
+                                        <option value="012330.KS">현대모비스</option>
+                                        <option class="divider" disabled>=====은행=====</option>
+                                        <option value="105560.KS">KB금융</option>
+                                        <option value="055550.KS">신한금융</option>
+                                        <option value="086790.KS">하나금융</option>
+                                        <option class="divider" disabled>=====보험=====</option>
+                                        <option value="032830.KS">삼성생명</option>
+                                        <option value="000810.KS">삼성화재</option>
+                                        <option class="divider" disabled>=====증권=====</option>
+                                        <option value="016360.KS">삼성증권</option>
+                                        <option value="006800.KS">미래에셋</option>
+                                        <option value="005940.KS">NH투자증권</option>
+                                        <option class="divider" disabled>=====정유=====</option>
+                                        <option value="034730.KS">SK이노베이션</option>
+                                        <option value="010950.KS">S-OIL</option>
+                                        <option value="078930.KS">GS</option>
+                                        <option class="divider" disabled>=====화학=====</option>
+                                        <option value="011170.KS">롯데케미칼</option>
+                                        <option value="051910.KS">LG화학</option>
+                                        <option class="divider" disabled>=====음식료=====</option>
+                                        <option value="097950.KS">CJ제일제당</option>
+                                        <option value="004370.KS">농심</option>
+                                        <option value="271560.KS">오리온</option>
+                                        <option class="divider" disabled>=====화장품=====</option>
+                                        <option value="090430.KS">아모레퍼시픽</option>
+                                        <option value="192820.KQ">코스맥스</option>
+                                        <option value="161890.KQ">한국콜마</option>
+                                        <option class="divider" disabled>=====통신=====</option>
+                                        <option value="017670.KS">SK텔레콤</option>
+                                        <option value="030200.KS">KT</option>
+                                        <option value="032640.KS">LG유플러스</option>
+                                        <option class="divider" disabled>=====전기가스=====</option>
+                                        <option value="015760.KS">한국전력</option>
+                                        <option value="036460.KS">한국가스공사</option>
+                                        <option value="051600.KS">한전KPS</option>
+                                        <option class="divider" disabled>=====인터넷=====</option>
+                                        <option value="035420.KS">네이버</option>
+                                        <option value="035720.KS">카카오</option>
+                                        <option class="divider" disabled>=====게임=====</option>
+                                        <option value="036570.KQ">엔씨소프트</option>
+                                        <option value="078340.KQ">컴투스</option>
+                                        <option value="207940.KQ">크래프톤</option>
+                                        <option value="112040.KQ">위메이드</option>
+                                        <option class="divider" disabled>=====배터리=====</option>
+                                        <option value="373220.KS">LG에너지솔루션</option>
+                                        <option value="006400.KS">삼성SDI</option>
+                                        <option value="086520.KQ">에코프로</option>
+                                        <option value="247540.KQ">에코프로비엠</option>
+                                        <option value="003670.KS">포스코퓨처엠</option>
+                                        <option class="divider" disabled>=====바이오=====</option>
+                                        <option value="128940.KS">한미약품</option>
+                                        <option value="000100.KS">유한양행</option>
+                                        <option value="069620.KQ">대웅제약</option>
+                                        <option value="207940.KS">삼성바이오로직스</option>
+                                        <option value="068270.KS">셀트리온</option>
+                                        <option value="185750.KQ">종근당</option>
+                                        <option value="302440.KQ">SK바이오사이언스</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <div class="card mr-3 border-left-primary h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">Nasdaq(나스닥)</div>
+                                                        <input type="hidden" value="NDAQ">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-secondary h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">SPY(S&P500)</div>
+                                                        <input type="hidden" value="SPY">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-success h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">KOSPI(코스피)</div>
+                                                        <input type="hidden" value="^KS11">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex">
+                            <div id="piechart3" class="mr-5" style="width: 500px; height: 500px;"></div>
+                            <div id="chart_div3" class="ml-5" style="width: 900px; height: 500px;"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th>Sharpe ratio</th>
+                                        <th>포트폴리오 기대수익률</th>
+                                        <th>포트폴리오 변동성</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+
+            {% include '/inc/footer.html' %}
+            
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% include '/inc/plugin.html' %}
+    <script src="../static/js/rebalancing.js"></script>
+
+</body>
+
+</html>
