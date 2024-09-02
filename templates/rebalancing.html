@@ -29,7 +29,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">MP1</h6>
                             <div class="navbar-nav ml-auto">
                                 <div class="nav-item dropdown">
-                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP1', this.value, assetList_mp1)">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP1', this.value)">
                                         <option disabled selected>Risk gauge</option>
                                         <option value="high">상</option>
                                         <option value="medium">중</option>
@@ -39,6 +39,985 @@
                             </div>
                         </nav>
                         <div class="card-body" id="mp1_selectbox">
+                            <div class="row mr-0 ml-0 mb-2">
+                                <div class="mb-2 mt-2">
+                                    <label for="start_date1">START DATE: </label>
+                                    <input type="date" class="bg-white border rounded p-1" id="start_date1" name="start_date1" text="시작일" value="2002-06-20">
+                                    <label for="end_date1">END DATE: </label>
+                                    <input type="date" class="bg-white border rounded p-1" id="end_date1" name="end_date1" text="종료일" value="2024-06-20">
+                                    <input type="hidden" name="mp_ver" value="mp1">
+                                </div>
+                            </div>
+                            <div class="row mr-0 ml-0 mb-2">
+                                <div class="row-col-1">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="custom-select form-control form-control-sm" onchange="add_btn(this)">
+                                        <option disabled selected>====자산선택(미국 시총 상위 300)====</option>
+                                        <option value="AAPL">AAPL(애플)</option>
+                                        <option value="MSFT">MSFT(마이크로소프트)</option>
+                                        <option value="AMZN">AMZN(아마존 닷컴)</option>
+                                        <option value="GOOG">GOOG(알파벳 C)</option>
+                                        <option value="META">FB(페이스북)</option>
+                                        <option value="GOOGL">GOOGL(알파벳 A)</option>
+                                        <option value="TSLA">TSLA(테슬라)</option>
+                                        <option value="AVGO">AVGO(BROADCOM INC 8.00% MANDATORY CONVERTIBL)</option>
+                                        <option value="TSM">TSM(TSMC ADR)</option>
+                                        <option value="BABA">BABA(알리바바홀딩스)</option>
+                                        <option value="NVDA">NVDA(엔비디아)</option>
+                                        <option value="JPM">JPM(제이피모간체이스)</option>
+                                        <option value="JNJ">JNJ(존슨앤드존슨)</option>
+                                        <option value="V">V(비자)</option>
+                                        <option value="WMT">WMT(월마트)</option>
+                                        <option value="UNH">UNH(유나이티드헬스 그룹)</option>
+                                        <option value="MA">MA(마스타카드)</option>
+                                        <option value="SPY">SPY(SPDR S&P 500)</option>
+                                        <option value="BRKb">BRKb(버크셔 해서웨이)</option>
+                                        <option value="PYPL">PYPL(페이팔 홀딩스)</option>
+                                        <option value="HD">HD(홈디포)</option>
+                                        <option value="PG">PG(P&G)</option>
+                                        <option value="DIS">DIS(월트 디즈니)</option>
+                                        <option value="BAC">BAC(뱅크오브아메리카)</option>
+                                        <option value="ASML">ASML(ASML 홀딩)</option>
+                                        <option value="ADBE">ADBE(어도비 시스템즈)</option>
+                                        <option value="IVV">IVV(ISHARES CORE S&P 500 ETF)</option>
+                                        <option value="CMCSA">CMCSA(컴캐스트)</option>
+                                        <option value="BRKa">BRKa(버크셔해서웨이.A)</option>
+                                        <option value="VTI">VTI(VANGUARD TOTAL STOCK MARKET ETF)</option>
+                                        <option value="TM">TM(TOYOTA MOTOR CORP ADR-EACH REP 2 ORD NP)</option>
+                                        <option value="KO">KO(코카콜라)</option>
+                                        <option value="ORCL">ORCL(오라클)</option>
+                                        <option value="VOO">VOO(VANGUARD S&P 500 ETF)</option>
+                                        <option value="XOM">XOM(엑슨 모빌)</option>
+                                        <option value="LLY">LLY(일라이 릴리)</option>
+                                        <option value="PFE">PFE(화이자)</option>
+                                        <option value="CSCO">CSCO(시스코 시스템즈)</option>
+                                        <option value="VZ">VZ(버라이존 커뮤니케이션스)</option>
+                                        <option value="CRM">CRM(세일즈포스닷컴)</option>
+                                        <option value="NFLX">NFLX(넷플릭스)</option>
+                                        <option value="PEP">PEP(펩시코)</option>
+                                        <option value="ABT">ABT(애보트 래버러토리)</option>
+                                        <option value="INTC">INTC(인텔)</option>
+                                        <option value="NKE">NKE(나이키)</option>
+                                        <option value="TMO">TMO(써모 피셔 사이언티픽)</option>
+                                        <option value="ABBV">ABBV(애브비)</option>
+                                        <option value="DHR">DHR(다나허)</option>
+                                        <option value="NVS">NVS(노바티스)</option>
+                                        <option value="ACN">ACN(액센츄어)</option>
+                                        <option value="T">T(AT&T)</option>
+                                        <option value="AVGO">AVGO(브로드컴)</option>
+                                        <option value="MRK">MRK(머크)</option>
+                                        <option value="TBC">TBC(AT&T Inc. 5.625% Global Notes due 2067)</option>
+                                        <option value="CVX">CVX(쉐브론)</option>
+                                        <option value="COST">COST(코스트코 홀세일)</option>
+                                        <option value="TBB">TBB(AT&T Inc. 5.350% Global Notes due 2066)</option>
+                                        <option value="SHOP">SHOP(쇼피파이)</option>
+                                        <option value="WFC">WFC(웰스파고)</option>
+                                        <option value="PCGU">PCGU(PG&E CORP EQUITY UNIT 16/08/2023)</option>
+                                        <option value="QQQ">QQQ(INVESCO QQQ TRUST)</option>
+                                        <option value="MCD">MCD(맥도날드)</option>
+                                        <option value="TMUS">TMUS(T모바일 US)</option>
+                                        <option value="MDT">MDT(메드트로닉)</option>
+                                        <option value="TXN">TXN(텍사스 인스트루먼트)</option>
+                                        <option value="SAP">SAP(SAP SE SPON ADR EACH REP 1 ORD NPV)</option>
+                                        <option value="QCOM">QCOM(퀄컴)</option>
+                                        <option value="HON">HON(HONEYWELL INTERNATIONAL INC)</option>
+                                        <option value="NVO">NVO(노보노디스크)</option>
+                                        <option value="CCZ">CCZ(컴캐스트)</option>
+                                        <option value="LIN">LIN(린데)</option>
+                                        <option value="PM">PM(필립 모리스 인터내셔널)</option>
+                                        <option value="UPS">UPS(UPS)</option>
+                                        <option value="AZN">AZN(아스트라젠카 ADR)</option>
+                                        <option value="BMY">BMY(브리스톨-마이어스 스큅)</option>
+                                        <option value="HTHT">HTHT(후아주그룹)</option>
+                                        <option value="NEE">NEE(넥스트에라 에너지)</option>
+                                        <option value="MS">MS(모간스탠리)</option>
+                                        <option value="SBUX">SBUX(스타벅스)</option>
+                                        <option value="UL">UL(UNILEVER PLC ADS-EA REPR 1 ORD GPB0.031)</option>
+                                        <option value="UNP">UNP(유니온 퍼시픽)</option>
+                                        <option value="INTU">INTU(인튜이트)</option>
+                                        <option value="RY">RY(로열뱅크오브캐나다)</option>
+                                        <option value="AMGN">AMGN(암젠)</option>
+                                        <option value="LOW">LOW(로우스 컴퍼니)</option>
+                                        <option value="MRNA">MRNA(모더나)</option>
+                                        <option value="AXP">AXP(아메리칸 엑스프레스)</option>
+                                        <option value="C">C(씨티그룹)</option>
+                                        <option value="CHTR">CHTR(차터 커뮤니케이션스)</option>
+                                        <option value="BLK">BLK(블랙록)</option>
+                                        <option value="RTX">RTX(RAYTHEON TECHNOLOGIES CORPORATION)</option>
+                                        <option value="SNY">SNY(사노피)</option>
+                                        <option value="AMT">AMT(아메리칸 타워)</option>
+                                        <option value="BA">BA(보잉)</option>
+                                        <option value="TGT">TGT(타겟)</option>
+                                        <option value="HDB">HDB(HDFC BANK LTD SPON ADS EACH REP 3 ORD S)</option>
+                                        <option value="GS">GS(골드만삭스 그룹)</option>
+                                        <option value="AMAT">AMAT(어플라이드 머티어리얼즈)</option>
+                                        <option value="IBM">IBM(인터내셔널 비즈니스 머신스)</option>
+                                        <option value="SONY">SONY(SONY GROUP CORPORATION SPON ADS EACH REPR 1 ORD)</option>
+                                        <option value="SCHW">SCHW(찰스 슈왑)</option>
+                                        <option value="PDD">PDD(핀뚜어뚜어)</option>
+                                        <option value="TD">TD(토론토도미니언뱅크)</option>
+                                        <option value="MMM">MMM(쓰리엠)</option>
+                                        <option value="NOW">NOW(서비스나우)</option>
+                                        <option value="ISRG">ISRG(인튜이티브 서지컬)</option>
+                                        <option value="CAT">CAT(캐터필러)</option>
+                                        <option value="HSBC">HSBC(HSBC HOLDINGS PLC ADR EACH REPR 5 ORD)</option>
+                                        <option value="VALE">VALE(VALE S.A. SPONS ADS REPR 1 COM NPV)</option>
+                                        <option value="BHP">BHP(BHP빌리턴)</option>
+                                        <option value="DEO">DEO(DIAGEO ADR EA REPR 4 ORD GBX28.935185)</option>
+                                        <option value="BUD">BUD(ANHEUSER-BUSCH INBEV SA/NV ADR EAH REP)</option>
+                                        <option value="AMD">AMD(AMD)</option>
+                                        <option value="GE">GE(GE)</option>
+                                        <option value="TTE">TTE(TOTALENERGIES SE SPON ADS EA REP 1 ORD)</option>
+                                        <option value="SE">SE(씨그룹 ADR)</option>
+                                        <option value="DE">DE(디어)</option>
+                                        <option value="CVS">CVS(CVS 헬스)</option>
+                                        <option value="LMT">LMT(록히드 마틴)</option>
+                                        <option value="SQ">SQ(스퀘어A)</option>
+                                        <option value="RIO">RIO(리오틴토)</option>
+                                        <option value="SNAP">SNAP(스냅)</option>
+                                        <option value="VEA">VEA(VANGUARD FTSE DEVELOPED MARKETS ETF)</option>
+                                        <option value="SPGI">SPGI(S&P 글로벌)</option>
+                                        <option value="SYK">SYK(스트라이커)</option>
+                                        <option value="GSK">GSK(GLAXOSMITHKLINE ADR EACH CNV INTO 2 ORD)</option>
+                                        <option value="IEFA">IEFA(ISHARES CORE MSCI EAFE ETF)</option>
+                                        <option value="ZTS">ZTS(조에티스)</option>
+                                        <option value="JD">JD(제이디닷컴)</option>
+                                        <option value="PLD">PLD(프로로지스)</option>
+                                        <option value="ANTM">ANTM(앤섬)</option>
+                                        <option value="INFY">INFY(INFOSYS LTD SPON ADR EACH REP 1 ORD SHS)</option>
+                                        <option value="FIS">FIS(피델리티 내셔널 인포메이션 서비스)</option>
+                                        <option value="LRCX">LRCX(램리서치)</option>
+                                        <option value="MDLZ">MDLZ(몬덜리즈 인터내셔널)</option>
+                                        <option value="BKNG">BKNG(부킹 홀딩스)</option>
+                                        <option value="AGG">AGG(ISHARES CORE US AGGREGATE BOND ETF)</option>
+                                        <option value="UBER">UBER(우버)</option>
+                                        <option value="MO">MO(알트리아그룹)</option>
+                                        <option value="ADP">ADP(오토매틱 데이터 프로세싱)</option>
+                                        <option value="BTI">BTI(BRITISH AMERICAN TOBACCO SPON ADS EACH)</option>
+                                        <option value="GILD">GILD(길리어드 사이언스)</option>
+                                        <option value="ZM">ZM(줌비디오커뮤니케이션스)</option>
+                                        <option value="MU">MU(마이크론 테크놀로지)</option>
+                                        <option value="HCA">HCA(HCA 홀딩스)</option>
+                                        <option value="CCI">CCI(크라운 캐슬 인터내셔널)</option>
+                                        <option value="VUG">VUG(VANGUARD GROWTH ETF)</option>
+                                        <option value="USB">USB(U.S. 뱅코프)</option>
+                                        <option value="VTV">VTV(VANGUARD VALUE ETF)</option>
+                                        <option value="TJX">TJX(TJX 컴퍼니스)</option>
+                                        <option value="VWO">VWO(VANGUARD FTSE EMERGING MARKETS ETF)</option>
+                                        <option value="BAM">BAM(브룩필드애셋매니지먼트)</option>
+                                        <option value="MELI">MELI(메르카도리브레)</option>
+                                        <option value="DUK">DUK(듀크 에너지)</option>
+                                        <option value="IEMG">IEMG(ISHARES CORE MSCI EMERGING MARKETS ETF)</option>
+                                        <option value="BND">BND(VANGUARD TOTAL BOND MARKET ETF)</option>
+                                        <option value="CI">CI(시그나 코퍼레이션)</option>
+                                        <option value="GM">GM(제너럴 모터스)</option>
+                                        <option value="FDX">FDX(페덱스)</option>
+                                        <option value="BP">BP(BP SPON ADR EACH REP 6 ORD SHS)</option>
+                                        <option value="ENB">ENB(인브릿지)</option>
+                                        <option value="SNOW">SNOW(스노우플레이크)</option>
+                                        <option value="PNC">PNC(PNC 파이낸셜 서비스)</option>
+                                        <option value="EL">EL(에스티 로더)</option>
+                                        <option value="RDSa">RDSa(로얄더치쉘 ADR)</option>
+                                        <option value="MTCN">MTCN(ARCELORMITTAL 5.50% MAN CON SUB NOTES)</option>
+                                        <option value="SHW">SHW(셔윈-윌리엄즈)</option>
+                                        <option value="BX">BX(블랙스톤 그룹)</option>
+                                        <option value="CME">CME(CME 그룹)</option>
+                                        <option value="BNS">BNS(뱅크오브노바스코티아)</option>
+                                        <option value="CB">CB(처브)</option>
+                                        <option value="MMC">MMC(마시 앤 맥레넌 컴퍼니)</option>
+                                        <option value="CNI">CNI(커네디언내셔널레일웨이)</option>
+                                        <option value="COP">COP(코노코필립스)</option>
+                                        <option value="EQIX">EQIX(이퀴닉스)</option>
+                                        <option value="CSX">CSX(CSX)</option>
+                                        <option value="FISV">FISV(파이서브)</option>
+                                        <option value="BDX">BDX(벡톤 디킨슨)</option>
+                                        <option value="IWF">IWF(ISHARES RUSSELL 1000 GROWTH ETF)</option>
+                                        <option value="TFC">TFC(트루이스트파이낸셜)</option>
+                                        <option value="ILMN">ILMN(일루미나)</option>
+                                        <option value="COF">COF(캐피털 원 파이낸셜)</option>
+                                        <option value="ITW">ITW(일리노이 툴 웍스)</option>
+                                        <option value="MCO">MCO(무디스)</option>
+                                        <option value="ATVI">ATVI(액티비전 블리자드)</option>
+                                        <option value="CL">CL(콜게이트-팜올리브)</option>
+                                        <option value="ABB">ABB(ABB LTD SPON ADR EACH REP 1 ORD SHS)</option>
+                                        <option value="ADSK">ADSK(오토데스크)</option>
+                                        <option value="ICE">ICE(인터컨티넨털 익스체인지)</option>
+                                        <option value="BNTX">BNTX(바이온텍 ADR)</option>
+                                        <option value="RDSb">RDSb(ROYAL DUTCH SHELL ADR EA REP 2 CL B)</option>
+                                        <option value="EW">EW(에드워즈 라이프사이언스)</option>
+                                        <option value="MUFG">MUFG(미쯔비시UFJ파이낸셜)</option>
+                                        <option value="IJR">IJR(ISHARES CORE S&P SMALL-CAP ETF)</option>
+                                        <option value="SO">SO(서던 컴퍼니)</option>
+                                        <option value="WBK">WBK(웨스트팩 뱅킹)</option>
+                                        <option value="TWLO">TWLO(트윌리오)</option>
+                                        <option value="BBL">BBL(BHP GROUP PLC SPON ADS EACH REP 2 ORD)</option>
+                                        <option value="NSC">NSC(노퍽서던)</option>
+                                        <option value="IWM">IWM(ISHARES RUSSELL 2000 ETF)</option>
+                                        <option value="NTES">NTES(넷이지 닷 컴)</option>
+                                        <option value="APD">APD(에어 프로덕츠 앤드 케미컬스)</option>
+                                        <option value="BMO">BMO(BANK OF MONTREAL)</option>
+                                        <option value="SAN">SAN(BANCO SANTANDER SA ADR EACH 1 REPR 1)</option>
+                                        <option value="IBN">IBN(ICICI BANK LIMITED SPON ADR EACH REPR)</option>
+                                        <option value="EQNR">EQNR(EQUINOR ASA SPON ADR EACH REP 1 ORD)</option>
+                                        <option value="BSX">BSX(보스턴 사이언티픽)</option>
+                                        <option value="IJH">IJH(ISHARES CORE S&P MID-CAP ETF)</option>
+                                        <option value="ETN">ETN(이튼)</option>
+                                        <option value="ECL">ECL(에코랩)</option>
+                                        <option value="VIG">VIG(VANGUARD DIV APPRECIATION ETF)</option>
+                                        <option value="WM">WM(웨이스트 매니지먼트)</option>
+                                        <option value="REGN">REGN(리제네론 파마수티컬스)</option>
+                                        <option value="HUM">HUM(휴마나)</option>
+                                        <option value="D">D(도미니언 에너지)</option>
+                                        <option value="ADI">ADI(애널로그 디바이시스)</option>
+                                        <option value="CPNG">CPNG(쿠팡)</option>
+                                        <option value="DOCU">DOCU(도큐사인)</option>
+                                        <option value="GLD">GLD(SPDR GOLD TRUST)</option>
+                                        <option value="IDXX">IDXX(아이덱스 래버러터리스)</option>
+                                        <option value="EMR">EMR(에머슨 일렉트릭)</option>
+                                        <option value="NOC">NOC(노스롭 그루만)</option>
+                                        <option value="STLA">STLA(STELLANTIS N.V)</option>
+                                        <option value="TWTR">TWTR(트위터)</option>
+                                        <option value="EFA">EFA(ISHARES MSCI EAFE ETF)</option>
+                                        <option value="GPN">GPN(글로벌 페이먼츠)</option>
+                                        <option value="BSBR">BSBR(뱅코 산탄데르 브라질)</option>
+                                        <option value="NIO">NIO(니오)</option>
+                                        <option value="SOLN">SOLN(SOUTHERN CO. CORPORATE UNITS 2019 SERIE)</option>
+                                        <option value="DASH">DASH(DOORDASH INC)</option>
+                                        <option value="PGR">PGR(프로그레시브)</option>
+                                        <option value="RELX">RELX(RELX PLC SPON ADS EACH REPR 1 ORD SHS G)</option>
+                                        <option value="PSA">PSA(퍼블릭 스토리지)</option>
+                                        <option value="ENBA">ENBA(Enbridge Inc 6.375% Fixed-to-Floating R)</option>
+                                        <option value="ROKU">ROKU(로쿠)</option>
+                                        <option value="HMC">HMC(HONDA MOTOR CO ADR-EACH CNV INTO 1 ORD)</option>
+                                        <option value="GD">GD(제너럴 다이내믹스)</option>
+                                        <option value="F">F(포드 모터 컴퍼니)</option>
+                                        <option value="NXPI">NXPI(NXP 세미컨덕터)</option>
+                                        <option value="DG">DG(달러 제너럴)</option>
+                                        <option value="IWD">IWD(ISHARES RUSSELL 1000 VALUE ETF)</option>
+                                        <option value="UBS">UBS(UBS GROUP AG)</option>
+                                        <option value="CRWD">CRWD(크라우드스트라이크)</option>
+                                        <option value="TAK">TAK(다케다파마슈티컬스)</option>
+                                        <option value="AON">AON(에이온)</option>
+                                        <option value="AEB">AEB(Aegon NV 6.375 Perp Capital Secs 2005-W)</option>
+                                        <option value="ROP">ROP(로퍼 테크놀로지스)</option>
+                                        <option value="VRTX">VRTX(버텍스 파마수티컬스)</option>
+                                        <option value="TRI">TRI(THOMSON-REUTERS CORP)</option>
+                                        <option value="FCX">FCX(프리포트 맥모란)</option>
+                                        <option value="CMG">CMG(치포틀레 멕시칸 그릴)</option>
+                                        <option value="EPD">EPD(엔터프라이즈 프로덕트 파트너스)</option>
+                                        <option value="KDP">KDP(KEURIG DR PEPPER INC)</option>
+                                        <option value="CM">CM(캐나디안 임페리얼 뱅크 오브 커머스)</option>
+                                        <option value="MNST">MNST(몬스터 베버리지)</option>
+                                        <option value="JCI">JCI(존슨 콘트롤즈 인터내셔널)</option>
+                                        <option value="VO">VO(VANGUARD MID-CAP ETF)</option>
+                                        <option value="ALGN">ALGN(얼라인 테크놀로지)</option>
+                                        <option value="MET">MET(메트라이프)</option>
+                                        <option value="LULU">LULU(룰루레몬 애슬릿티카)</option>
+                                        <option value="ABEV">ABEV(AMBEV SA SPON ADR EACH REP 1 ORD SHS)</option>
+                                        <option value="EBAY">EBAY(이베이)</option>
+                                        <option value="VGT">VGT(VANGUARD INFORMATION TECH ETF)</option>
+                                        <option value="CP">CP(CANADIAN PACIFIC RAILWAY COMPANY)</option>
+                                        <option value="KLAC">KLAC(KLA-텐코)</option>
+                                        <option value="PUK">PUK(PRUDENTIAL ADR EACH REPR 2 ORD GBP0.05)</option>
+                                        <option value="BIIB">BIIB(바이오젠)</option>
+                                        <option value="BIDU">BIDU(바이두)</option>
+                                        <option value="SCCO">SCCO(SOUTHERN COPPER CORPORATION)</option>
+                                        <option value="WIT">WIT(WIPRO LTD SPON ADR REP 1 ORD SHS INR2)</option>
+                                        <option value="VXUS">VXUS(VANGUARD TOTAL INTERNATIONAL STOCK ETF)</option>
+                                        <option value="MRVL">MRVL(마벨 테크놀로지 그룹)</option>
+                                        <option value="TT">TT(TRANE TECHNOLOGIES PLC)</option>
+                                        <option value="ING">ING(ING GROEP N.V. SPONS ADR-EACH REPR 1 OR)</option>
+                                        <option value="NEM">NEM(뉴몬트 마이닝)</option>
+                                        <option value="KHC">KHC(크래프트 하인즈)</option>
+                                        <option value="IQV">IQV(아이큐비아 홀딩스)</option>
+                                        <option value="MSCI">MSCI(MSCI)</option>
+                                        <option value="TRP">TRP(TC ENERGY CORPORATION)</option>
+                                        <option value="TROW">TROW(T.로우 프라이스)</option>
+                                        <option value="VCIT">VCIT(VANGUARD INTERMEDIATE-TERM CORPORATE BO)</option>
+                                        <option value="LHX">LHX(L3 해리스 테크놀로지스)</option>
+                                        <option value="SMFG">SMFG(SUMITOMO MITSUI FINANCIAL GROUP INC ADR)</option>
+                                        <option value="VB">VB(VANGUARD SMALL-CAP ETF)</option>
+                                        <option value="A">A(애질런트 테크놀로지스)</option>
+                                        <option value="INFO">INFO(IHS 마킷)</option>
+                                        <option value="VEEV">VEEV(VEEVA SYSTEMS INC)</option>
+                                        <option value="VOD">VOD(보다폰 그룹)</option>
+                                        <option value="SPOT">SPOT(스포티파이테크놀로지)</option>
+                                        <option value="NGG">NGG(NATIONAL GRID SPON ADR EACH REP 5 ORD)</option>
+                                        <option value="KMB">KMB(킴벌리클라크)</option>
+                                        <option value="TEL">TEL(타이코 전자)</option>
+                                        <option value="EXC">EXC(엑셀론)</option>
+                                        <option value="WDAY">WDAY(워크데이)</option>
+                                        <option value="MAR">MAR(메리어트 인터내셔널/매릴랜드)</option>
+                                        <option value="CARR">CARR(CARRIER GLOBAL CORPORATION)</option>
+                                        <option value="FTNT">FTNT(포티넷)</option>
+                                        <option value="DOW">DOW(다우)</option>
+                                        <option value="MTCH">MTCH(MATCH GROUP INC)</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <div class="card mr-3 border-left-primary h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">AAPL(애플)</div>
+                                                        <input type="hidden" value="AAPL">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-secondary h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">MSFT(마이크로소프트)</div>
+                                                        <input type="hidden" value="MSFT">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-success h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">AMZN(아마존 닷컴)</div>
+                                                        <input type="hidden" value="AMZN">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-info h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">GOOG(알파벳 C)</div>
+                                                        <input type="hidden" value="GOOG">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-warning h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">META(페이스북)</div>
+                                                        <input type="hidden" value="META">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-danger h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">TSLA(테슬라)</div>
+                                                        <input type="hidden" value="TSLA">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-dark h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">AVGO(BROADCOM INC 8.00% MANDATORY CONVERTIBL)</div>
+                                                        <input type="hidden" value="AVGO">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex" >
+                            <div id="piechart1" class="mr-5" style="width: 500px; height: 500px;"></div>
+                            <div id="chart_div1" class="ml-5" style="width: 900px; height: 500px;"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th>포트폴리오 Sharpe ratio</th>
+                                        <th>포트폴리오 기대수익률</th>
+                                        <th>포트폴리오 변동성</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th></th>
+                                        <th>Nasdaq</th>
+                                        <th>S&P500</th>
+                                        <th>KOSPI</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>기대수익률</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th>변동성</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                            <h6 class="m-0 font-weight-bold text-primary">MP2</h6>
+                            <div class="navbar-nav ml-auto">
+                                <div class="nav-item dropdown">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP2', this.value)">
+                                        <option disabled selected>Risk gauge</option>
+                                        <option value="high">상</option>
+                                        <option value="medium">중</option>
+                                        <option value="low">하</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="card-body" id="mp2_selectbox">
+                            <div class="row mr-0 ml-0 mb-2">
+                                <div class="mb-2 mt-2">
+                                    <label for="start_date2">START DATE: </label>
+                                    <input type="date" class="bg-white border rounded p-1" id="start_date2" name="start_date2" text="시작일" value="2002-06-20">
+                                    <label for="end_date2">END DATE: </label>
+                                    <input type="date" class="bg-white border rounded p-1" id="end_date2" name="end_date2" text="종료일" value="2024-06-20">
+                                    <input type="hidden" name="mp_ver" value="mp2">
+                                </div>
+                            </div>
+                            <div class="row mr-0 ml-0 mb-2">
+                                <div class="row-col-1">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="custom-select form-control form-control-sm" onchange="add_btn(this)">
+                                        <option disabled selected>====자산선택(VANGUARD volatility 하위 300)====</option>
+                                        <option value="KO">Coca-Cola Co.</option>
+                                        <option value="JNJ">Johnson & Johnson</option>
+                                        <option value="PG">Procter & Gamble Co.</option>
+                                        <option value="PEP">PepsiCo Inc.</option>
+                                        <option value="RSG">Republic Services Inc. Class A</option>
+                                        <option value="CL">Colgate-Palmolive Co.</option>
+                                        <option value="WM">Waste Management Inc.</option>
+                                        <option value="MMC">Marsh & McLennan Cos. Inc.</option>
+                                        <option value="DOX">Amdocs Ltd.</option>
+                                        <option value="MCD">McDonald's Corp.</option>
+                                        <option value="CHD">Church & Dwight Co. Inc.</option>
+                                        <option value="ATR">AptarGroup Inc.</option>
+                                        <option value="CMS">CMS Energy Corp.</option>
+                                        <option value="WMT">Walmart Inc.</option>
+                                        <option value="MDLZ">Mondelez International Inc. Class A</option>
+                                        <option value="AJG">Arthur J Gallagher & Co.</option>
+                                        <option value="LNT">Alliant Energy Corp.</option>
+                                        <option value="XEL">Xcel Energy Inc.</option>
+                                        <option value="COST">Costco Wholesale Corp.</option>
+                                        <option value="ATO">Atmos Energy Corp.</option>
+                                        <option value="MRK">Merck & Co. Inc.</option>
+                                        <option value="HSY">Hershey Co.</option>
+                                        <option value="IDA">IDACORP Inc.</option>
+                                        <option value="BRO">Brown & Brown Inc.</option>
+                                        <option value="BDX">Becton Dickinson and Co.</option>
+                                        <option value="LMT">Lockheed Martin Corp.</option>
+                                        <option value="GD">General Dynamics Corp.</option>
+                                        <option value="SLGN">Silgan Holdings Inc.</option>
+                                        <option value="HRL">Hormel Foods Corp.</option>
+                                        <option value="DTE">DTE Energy Co.</option>
+                                        <option value="ICE">Intercontinental Exchange Inc.</option>
+                                        <option value="JKHY">Jack Henry & Associates Inc.</option>
+                                        <option value="AON">Aon plc Class A</option>
+                                        <option value="HON">Honeywell International Inc.</option>
+                                        <option value="SJM">JM Smucker Co.</option>
+                                        <option value="IEX">IDEX Corp.</option>
+                                        <option value="MKC">McCormick & Co. Inc./MD</option>
+                                        <option value="ROP">Roper Technologies Inc.</option>
+                                        <option value="LIN">Linde plc</option>
+                                        <option value="AWK">American Water Works Co. Inc.</option>
+                                        <option value="MDT">Medtronic plc</option>
+                                        <option value="BR">Broadridge Financial Solutions Inc.</option>
+                                        <option value="CLX">Clorox Co.</option>
+                                        <option value="ITW">Illinois Tool Works Inc.</option>
+                                        <option value="CB">Chubb Ltd.</option>
+                                        <option value="EXPD">Expeditors International of Washington Inc.</option>
+                                        <option value="THG">Hanover Insurance Group Inc.</option>
+                                        <option value="ABT">Abbott Laboratories</option>
+                                        <option value="SRE">Sempra Energy</option>
+                                        <option value="TRV">Travelers Cos. Inc.</option>
+                                        <option value="NDAQ">Nasdaq Inc.</option>
+                                        <option value="DGX">Quest Diagnostics Inc.</option>
+                                        <option value="IBM">International Business Machines Corp.</option>
+                                        <option value="SON">Sonoco Products Co.</option>
+                                        <option value="WRB">WR Berkley Corp.</option>
+                                        <option value="ADP">Automatic Data Processing Inc.</option>
+                                        <option value="ALL">Allstate Corp.</option>
+                                        <option value="APH">Amphenol Corp. Class A</option>
+                                        <option value="PAYX">Paychex Inc.</option>
+                                        <option value="CME">CME Group Inc.</option>
+                                        <option value="NEE">NextEra Energy Inc.</option>
+                                        <option value="CBOE">Cboe Global Markets Inc.</option>
+                                        <option value="NOC">Northrop Grumman Corp.</option>
+                                        <option value="HD">Home Depot Inc.</option>
+                                        <option value="WTRG">Essential Utilities Inc.</option>
+                                        <option value="TR">Tootsie Roll Industries Inc.</option>
+                                        <option value="NFG">National Fuel Gas Co.</option>
+                                        <option value="V">Visa Inc. Class A</option>
+                                        <option value="ACN">Accenture plc Class A</option>
+                                        <option value="CHE">Chemed Corp.</option>
+                                        <option value="INGR">Ingredion Inc.</option>
+                                        <option value="MSI">Motorola Solutions Inc.</option>
+                                        <option value="AMGN">Amgen Inc.</option>
+                                        <option value="SCI">Service Corp. International/US</option>
+                                        <option value="FLO">Flowers Foods Inc.</option>
+                                        <option value="VLTO">Veralto Corp.</option>
+                                        <option value="TTC">Toro Co.</option>
+                                        <option value="CMCSA">Comcast Corp. Class A</option>
+                                        <option value="FDS">FactSet Research Systems Inc.</option>
+                                        <option value="CSCO">Cisco Systems Inc.</option>
+                                        <option value="STE">STERIS plc</option>
+                                        <option value="GGG">Graco Inc.</option>
+                                        <option value="APD">Air Products & Chemicals Inc.</option>
+                                        <option value="RNR">RenaissanceRe Holdings Ltd.</option>
+                                        <option value="ECL">Ecolab Inc.</option>
+                                        <option value="LHX">L3Harris Technologies Inc.</option>
+                                        <option value="AFL">Aflac Inc.</option>
+                                        <option value="AXS">Axis Capital Holdings Ltd.</option>
+                                        <option value="ORI">Old Republic International Corp.</option>
+                                        <option value="RPM">RPM International Inc.</option>
+                                        <option value="DCI">Donaldson Co. Inc.</option>
+                                        <option value="MORN">Morningstar Inc.</option>
+                                        <option value="SPGI">S&P Global Inc.</option>
+                                        <option value="SYK">Stryker Corp.</option>
+                                        <option value="UNP">Union Pacific Corp.</option>
+                                        <option value="UNH">UnitedHealth Group Inc.</option>
+                                        <option value="BAH">Booz Allen Hamilton Holding Corp. Class A</option>
+                                        <option value="GPC">Genuine Parts Co.</option>
+                                        <option value="WSO">Watsco Inc.</option>
+                                        <option value="CBSH">Commerce Bancshares Inc./MO</option>
+                                        <option value="CTAS">Cintas Corp.</option>
+                                        <option value="SEIC">SEI Investments Co.</option>
+                                        <option value="SHW">Sherwin-Williams Co.</option>
+                                        <option value="RLI">RLI Corp.</option>
+                                        <option value="CHRW">CH Robinson Worldwide Inc.</option>
+                                        <option value="PPG">PPG Industries Inc.</option>
+                                        <option value="AMSF">AMERISAFE Inc.</option>
+                                        <option value="ZTS">Zoetis Inc.</option>
+                                        <option value="ALLE">Allegion plc</option>
+                                        <option value="COR">AmerisourceBergen Corp. Class A</option>
+                                        <option value="NHC">National HealthCare Corp.</option>
+                                        <option value="LANC">Lancaster Colony Corp.</option>
+                                        <option value="LECO">Lincoln Electric Holdings Inc.</option>
+                                        <option value="CHCO">City Holding Co.</option>
+                                        <option value="AIZ">Assurant Inc.</option>
+                                        <option value="FAST">Fastenal Co.</option>
+                                        <option value="ABBV">AbbVie Inc.</option>
+                                        <option value="XYL">Xylem Inc./NY</option>
+                                        <option value="TEL">TE Connectivity Ltd.</option>
+                                        <option value="ASH">Ashland Global Holdings Inc.</option>
+                                        <option value="SNA">Snap-on Inc.</option>
+                                        <option value="ADM">Archer-Daniels-Midland Co.</option>
+                                        <option value="AVY">Avery Dennison Corp.</option>
+                                        <option value="DOV">Dover Corp.</option>
+                                        <option value="AWR">American States Water Co.</option>
+                                        <option value="LII">Lennox International Inc.</option>
+                                        <option value="WABC">Westamerica Bancorporation</option>
+                                        <option value="CMI">Cummins Inc.</option>
+                                        <option value="MA">Mastercard Inc. Class A</option>
+                                        <option value="JBHT">JB Hunt Transport Services Inc.</option>
+                                        <option value="JPM">JPMorgan Chase & Co.</option>
+                                        <option value="ERIE">Erie Indemnity Co. Class A</option>
+                                        <option value="AOS">AO Smith Corp.</option>
+                                        <option value="BK">Bank of New York Mellon Corp.</option>
+                                        <option value="MSFT">Microsoft Corp.</option>
+                                        <option value="ORCL">Oracle Corp.</option>
+                                        <option value="MCO">Moody's Corp.</option>
+                                        <option value="HMN">Horace Mann Educators Corp.</option>
+                                        <option value="CASY">Casey's General Stores Inc.</option>
+                                        <option value="BLK">BlackRock Inc.</option>
+                                        <option value="HUBB">Hubbell Inc. Class B</option>
+                                        <option value="FNF">Fidelity National Financial Inc.</option>
+                                        <option value="MGEE">MGE Energy Inc.</option>
+                                        <option value="HII">Huntington Ingalls Industries Inc.</option>
+                                        <option value="SIGI">Selective Insurance Group Inc.</option>
+                                        <option value="EMR">Emerson Electric Co.</option>
+                                        <option value="CSL">Carlisle Cos. Inc.</option>
+                                        <option value="JJSF">J&J Snack Foods Corp.</option>
+                                        <option value="XOM">Exxon Mobil Corp.</option>
+                                        <option value="CWT">California Water Service Group</option>
+                                        <option value="CPK">Chesapeake Utilities Corp.</option>
+                                        <option value="ARTNA">Artesian Resources Corp. Class A</option>
+                                        <option value="PKG">Packaging Corp. of America</option>
+                                        <option value="FAF">First American Financial Corp.</option>
+                                        <option value="EXPO">Exponent Inc.</option>
+                                        <option value="SBUX">Starbucks Corp.</option>
+                                        <option value="GHC">Graham Holdings Co. Class B</option>
+                                        <option value="ETN">Eaton Corp. plc</option>
+                                        <option value="CINF">Cincinnati Financial Corp.</option>
+                                        <option value="CSGS">CSG Systems International Inc.</option>
+                                        <option value="GWW">WW Grainger Inc.</option>
+                                        <option value="TXN">Texas Instruments Inc.</option>
+                                        <option value="MCK">McKesson Corp.</option>
+                                        <option value="WTS">Watts Water Technologies Inc. Class A</option>
+                                        <option value="KR">Kroger Co.</option>
+                                        <option value="CSX">CSX Corp.</option>
+                                        <option value="CDW">CDW Corp./DE</option>
+                                        <option value="GS">Goldman Sachs Group Inc.</option>
+                                        <option value="GABC">German American Bancorp Inc.</option>
+                                        <option value="CAH">Cardinal Health Inc.</option>
+                                        <option value="MAS">Masco Corp.</option>
+                                        <option value="TSN">Tyson Foods Inc. Class A</option>
+                                        <option value="NDSN">Nordson Corp.</option>
+                                        <option value="BCPC">Balchem Corp.</option>
+                                        <option value="BRC">Brady Corp. Class A</option>
+                                        <option value="AAPL">Apple Inc.</option>
+                                        <option value="NJR">New Jersey Resources Corp.</option>
+                                        <option value="LOW">Lowe's Cos. Inc.</option>
+                                        <option value="TSCO">Tractor Supply Co.</option>
+                                        <option value="WDFC">WD-40 Co.</option>
+                                        <option value="CBU">Community Bank System Inc.</option>
+                                        <option value="ELV">Anthem Inc.</option>
+                                        <option value="NBTB">NBT Bancorp Inc.</option>
+                                        <option value="HIG">Hartford Financial Services Group Inc.</option>
+                                        <option value="PNR">Pentair plc</option>
+                                        <option value="PNC">PNC Financial Services Group Inc.</option>
+                                        <option value="GLW">Corning Inc.</option>
+                                        <option value="WST">West Pharmaceutical Services Inc.</option>
+                                        <option value="OTTR">Otter Tail Corp.</option>
+                                        <option value="HEI">HEICO Corp.</option>
+                                        <option value="SYY">Sysco Corp.</option>
+                                        <option value="AFG">American Financial Group Inc./OH</option>
+                                        <option value="AVT">Avnet Inc.</option>
+                                        <option value="CAT">Caterpillar Inc.</option>
+                                        <option value="GSBC">Great Southern Bancorp Inc.</option>
+                                        <option value="FUL">HB Fuller Co.</option>
+                                        <option value="NKE">NIKE Inc. Class B</option>
+                                        <option value="RS">Reliance Steel & Aluminum Co.</option>
+                                        <option value="POOL">Pool Corp.</option>
+                                        <option value="DPZ">Domino's Pizza Inc.</option>
+                                        <option value="SJW">SJW Group</option>
+                                        <option value="ROK">Rockwell Automation Inc.</option>
+                                        <option value="MSA">MSA Safety Inc.</option>
+                                        <option value="EMN">Eastman Chemical Co.</option>
+                                        <option value="TOWN">Towne Bank/Portsmouth VA</option>
+                                        <option value="MGRC">McGrath RentCorp</option>
+                                        <option value="LKFN">Lakeland Financial Corp.</option>
+                                        <option value="YORW">York Water Co.</option>
+                                        <option value="WLY">John Wiley & Sons Inc. Class A</option>
+                                        <option value="MET">MetLife Inc.</option>
+                                        <option value="DHR">Danaher Corp.</option>
+                                        <option value="SRCE">1st Source Corp.</option>
+                                        <option value="VMC">Vulcan Materials Co.</option>
+                                        <option value="FMBH">First Mid Bancshares Inc.</option>
+                                        <option value="RBA">RB Global Inc.</option>
+                                        <option value="CASS">Cass Information Systems Inc.</option>
+                                        <option value="RHI">Robert Half International Inc.</option>
+                                        <option value="HUM">Humana Inc.</option>
+                                        <option value="RJF">Raymond James Financial Inc.</option>
+                                        <option value="TNC">Tennant Co.</option>
+                                        <option value="GATX">GATX Corp.</option>
+                                        <option value="SCL">Stepan Co.</option>
+                                        <option value="PRI">Primerica Inc.</option>
+                                        <option value="SSD">Simpson Manufacturing Co. Inc.</option>
+                                        <option value="MSEX">Middlesex Water Co.</option>
+                                        <option value="TCBK">TriCo Bancshares</option>
+                                        <option value="BAC">Bank of America Corp.</option>
+                                        <option value="IOSP">Innospec Inc.</option>
+                                        <option value="INTU">Intuit Inc.</option>
+                                        <option value="TGT">Target Corp.</option>
+                                        <option value="BMI">Badger Meter Inc.</option>
+                                        <option value="ADI">Analog Devices Inc.</option>
+                                        <option value="SYBT">Stock Yards Bancorp Inc.</option>
+                                        <option value="RMD">ResMed Inc.</option>
+                                        <option value="GL">Globe Life Inc.</option>
+                                        <option value="PB">Prosperity Bancshares Inc.</option>
+                                        <option value="FELE">Franklin Electric Co. Inc.</option>
+                                        <option value="FRME">First Merchants Corp.</option>
+                                        <option value="HIFS">Hingham Institution for Savings</option>
+                                        <option value="ITT">ITT Inc.</option>
+                                        <option value="CABO">Cable One Inc.</option>
+                                        <option value="CE">Celanese Corp. Class A</option>
+                                        <option value="RGA">Reinsurance Group of America Inc. Class A</option>
+                                        <option value="AIT">Applied Industrial Technologies Inc.</option>
+                                        <option value="PFG">Principal Financial Group Inc.</option>
+                                        <option value="FCBC">First Community Bankshares Inc.</option>
+                                        <option value="FFIN">First Financial Bankshares Inc.</option>
+                                        <option value="INDB">Independent Bank Corp.</option>
+                                        <option value="MAN">ManpowerGroup Inc.</option>
+                                        <option value="RRX">Regal Beloit Corp.</option>
+                                        <option value="ABM">ABM Industries Inc.</option>
+                                        <option value="ATRI">Atrion Corp.</option>
+                                        <option value="UMBF">UMB Financial Corp.</option>
+                                        <option value="KAI">Kadant Inc.</option>
+                                        <option value="CNS">Cohen & Steers Inc.</option>
+                                        <option value="MKTX">MarketAxess Holdings Inc.</option>
+                                        <option value="LFUS">Littelfuse Inc.</option>
+                                        <option value="STT">State Street Corp.</option>
+                                        <option value="AES">AES Corp./VA</option>
+                                        <option value="SWK">Stanley Black & Decker Inc.</option>
+                                        <option value="SXI">Standex International Corp.</option>
+                                        <option value="LNN">Lindsay Corp.</option>
+                                        <option value="SSB">SouthState Corp.</option>
+                                        <option value="HI">Hillenbrand Inc.</option>
+                                        <option value="CFR">Cullen/Frost Bankers Inc.</option>
+                                        <option value="AMP">Ameriprise Financial Inc.</option>
+                                        <option value="BOKF">BOK Financial Corp.</option>
+                                        <option value="MATW">Matthews International Corp. Class A</option>
+                                        <option value="AGCO">AGCO Corp.</option>
+                                        <option value="HPQ">HP Inc.</option>
+                                        <option value="OSK">Oshkosh Corp.</option>
+                                        <option value="EVR">Evercore Inc. Class A</option>
+                                        <option value="AGO">Assured Guaranty Ltd.</option>
+                                        <option value="GRC">Gorman-Rupp Co.</option>
+                                        <option value="IBOC">International Bancshares Corp.</option>
+                                        <option value="NUE">Nucor Corp.</option>
+                                        <option value="SMBC">Southern Missouri Bancorp Inc.</option>
+                                        <option value="HOMB">Home BancShares Inc./AR</option>
+                                        <option value="CNO">CNO Financial Group Inc.</option>
+                                        <option value="TKR">Timken Co.</option>
+                                        <option value="AUB">Atlantic Union Bankshares Corp.</option>
+                                        <option value="PSX">Phillips 66</option>
+                                        <option value="BANF">BancFirst Corp.</option>
+                                        <option value="DHI">DR Horton Inc.</option>
+                                        <option value="WSFS">WSFS Financial Corp.</option>
+                                        <option value="CADE">Cadence Bank</option>
+                                        <option value="CBT">Cabot Corp.</option>
+                                        <option value="KWR">Quaker Chemical Corp.</option>
+                                        <option value="UFPI">UFP Industries Inc.</option>
+                                        <option value="AGM">Federal Agricultural Mortgage Corp.</option>
+                                        <option value="PRGO">Perrigo Co. plc</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <div class="card mr-3 border-left-primary h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">Coca-Cola Co</div>
+                                                        <input type="hidden" value="KO">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-secondary h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">Johnson & Johnson</div>
+                                                        <input type="hidden" value="JNJ">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-success h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">Procter & Gamble Co</div>
+                                                        <input type="hidden" value="PG">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-info h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">PepsiCo Inc.</div>
+                                                        <input type="hidden" value="PEP">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-warning h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">Republic Services Inc. Class A</div>
+                                                        <input type="hidden" value="RSG">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-danger h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">Colgate-Palmolive Co</div>
+                                                        <input type="hidden" value="CL">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-dark h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">Waste Management Inc</div>
+                                                        <input type="hidden" value="WM">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex">
+                            <div id="piechart2" class="mr-5" style="width: 500px; height: 500px;"></div>
+                            <div id="chart_div2" class="ml-5" style="width: 900px; height: 500px;"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th>포트폴리오 Sharpe ratio</th>
+                                        <th>포트폴리오 기대수익률</th>
+                                        <th>포트폴리오 변동성</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable4" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th></th>
+                                        <th>Nasdaq</th>
+                                        <th>S&P500</th>
+                                        <th>KOSPI</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>기대수익률</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th>변동성</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                            <h6 class="m-0 font-weight-bold text-primary">MP3</h6>
+                            <div class="navbar-nav ml-auto">
+                                <div class="nav-item dropdown">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP3', this.value)">
+                                        <option disabled selected>Risk gauge</option>
+                                        <option value="high">상</option>
+                                        <option value="medium">중</option>
+                                        <option value="low">하</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="card-body" id="mp3_selectbox">
+                            <div class="row mr-0 ml-0 mb-2">
+                                <div class="mb-2 mt-2">
+                                    <label for="start_date3">START DATE: </label>
+                                    <input type="date" class="bg-white border rounded p-1" id="start_date3" name="start_date3" text="시작일" value="2002-06-20">
+                                    <label for="end_date3">END DATE: </label>
+                                    <input type="date" class="bg-white border rounded p-1" id="end_date3" name="end_date3" text="종료일" value="2024-06-20">
+                                    <input type="hidden" name="mp_ver" value="mp3">
+                                </div>
+                            </div>
                             <div class="row mr-0 ml-0 mb-2">
                                 <div class="row-col-1">
                                     <select name="dataTable_length" aria-controls="dataTable" class="custom-select form-control form-control-sm" onchange="add_btn(this)">
@@ -128,6 +1107,51 @@
                                     </select>
                                 </div>
                                 <div class="col">
+                                    <!-- <div class="card mr-3 border-left-primary h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">Nasdaq(나스닥)</div>
+                                                        <input type="hidden" value="NDAQ">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-secondary h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">SPY(S&P500)</div>
+                                                        <input type="hidden" value="SPY">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mr-3 border-left-success h-100">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="card-body p-2">KOSPI(코스피)</div>
+                                                        <input type="hidden" value="^KS11">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn" onclick="remove_btn(this)">X</button>
+                                            </div>
+                                        </div>
+                                    </div> -->
                                     <div class="card mr-3 border-left-primary h-100">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
@@ -173,7 +1197,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card mr-3 border-left-info h-100">
+                                    <div class="card mr-3 border-left-primary h-100">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="row no-gutters align-items-center">
@@ -188,7 +1212,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card mr-3 border-left-warning h-100">
+                                    <div class="card mr-3 border-left-secondary h-100">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="row no-gutters align-items-center">
@@ -203,7 +1227,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card mr-3 border-left-danger h-100">
+                                    <div class="card mr-3 border-left-success h-100">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="row no-gutters align-items-center">
@@ -218,7 +1242,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card mr-3 border-left-dark h-100">
+                                    <div class="card mr-3 border-left-success h-100">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="row no-gutters align-items-center">
@@ -236,434 +1260,46 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body d-flex" >
-                            <div id="piechart1" class="mr-5" style="width: 500px; height: 500px;"></div>
-                            <div id="chart_div1" class="ml-5" style="width: 900px; height: 500px;"></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
-                                    <thead>
-                                        <th>Sharpe ratio</th>
-                                        <th>포트폴리오 기대수익률</th>
-                                        <th>포트폴리오 변동성</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                            <h6 class="m-0 font-weight-bold text-primary">MP2</h6>
-                            <div class="navbar-nav ml-auto">
-                                <div class="nav-item dropdown">
-                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP2', this.value, assetList_mp2)">
-                                        <option disabled selected>Risk gauge</option>
-                                        <option value="high">상</option>
-                                        <option value="medium">중</option>
-                                        <option value="low">하</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </nav>
-                        <div class="card-body" id="mp2_selectbox">
-                            <div class="row mr-0 ml-0 mb-2">
-                                <div class="row-col-1">
-                                    <select name="dataTable_length" aria-controls="dataTable" class="custom-select form-control form-control-sm" onchange="add_btn(this)">
-                                        <option disabled selected>자산선택</option>
-                                        <option disabled>=====글로벌자산=====</option>
-                                        <option value="IGLB">IGLB(장기투자채권)</option>
-                                        <option value="HYG">HYG(고수익채권)</option>
-                                        <option value="SPY">SPY(S&P500)</option>
-                                        <option value="MBB">MBB(모기지)</option>
-                                        <option value="SOXX">SOXX(반도체)</option>
-                                        <option value="URA">URA(핵)</option>
-                                        <option value="PAVE">PAVE(인프라)</option>
-                                        <option class="divider" disabled>=====반도체=====</option>
-                                        <option value="005930.KS">삼성전자</option>
-                                        <option value="000660.KS">SK하이닉스</option>
-                                        <option class="divider" disabled>=====반도체장비=====</option>
-                                        <option value="000990.KS">DB하이텍</option>
-                                        <option value="042700.KQ">한미반도체</option>
-                                        <option value="005290.KS">동진쎄미켐</option>
-                                        <option value="240810.KQ">원익IPS</option>
-                                        <option value="011930.KS">신성이엔지</option>
-                                        <option value="058470.KQ">리노공업</option>
-                                        <option value="036930.KQ">주성엔지니어링</option>
-                                        <option value="036830.KQ">솔브레인</option>
-                                        <option value="092220.KQ">KEC</option>
-                                        <option value="067310.KQ">하나마이크론</option>
-                                        <option class="divider" disabled>=====자동차=====</option>
-                                        <option value="005380.KS">현대차</option>
-                                        <option value="000270.KS">기아</option>
-                                        <option value="012330.KS">현대모비스</option>
-                                        <option class="divider" disabled>=====은행=====</option>
-                                        <option value="105560.KS">KB금융</option>
-                                        <option value="055550.KS">신한금융</option>
-                                        <option value="086790.KS">하나금융</option>
-                                        <option class="divider" disabled>=====보험=====</option>
-                                        <option value="032830.KS">삼성생명</option>
-                                        <option value="000810.KS">삼성화재</option>
-                                        <option class="divider" disabled>=====증권=====</option>
-                                        <option value="016360.KS">삼성증권</option>
-                                        <option value="006800.KS">미래에셋</option>
-                                        <option value="005940.KS">NH투자증권</option>
-                                        <option class="divider" disabled>=====정유=====</option>
-                                        <option value="034730.KS">SK이노베이션</option>
-                                        <option value="010950.KS">S-OIL</option>
-                                        <option value="078930.KS">GS</option>
-                                        <option class="divider" disabled>=====화학=====</option>
-                                        <option value="011170.KS">롯데케미칼</option>
-                                        <option value="051910.KS">LG화학</option>
-                                        <option class="divider" disabled>=====음식료=====</option>
-                                        <option value="097950.KS">CJ제일제당</option>
-                                        <option value="004370.KS">농심</option>
-                                        <option value="271560.KS">오리온</option>
-                                        <option class="divider" disabled>=====화장품=====</option>
-                                        <option value="090430.KS">아모레퍼시픽</option>
-                                        <option value="192820.KQ">코스맥스</option>
-                                        <option value="161890.KQ">한국콜마</option>
-                                        <option class="divider" disabled>=====통신=====</option>
-                                        <option value="017670.KS">SK텔레콤</option>
-                                        <option value="030200.KS">KT</option>
-                                        <option value="032640.KS">LG유플러스</option>
-                                        <option class="divider" disabled>=====전기가스=====</option>
-                                        <option value="015760.KS">한국전력</option>
-                                        <option value="036460.KS">한국가스공사</option>
-                                        <option value="051600.KS">한전KPS</option>
-                                        <option class="divider" disabled>=====인터넷=====</option>
-                                        <option value="035420.KS">네이버</option>
-                                        <option value="035720.KS">카카오</option>
-                                        <option class="divider" disabled>=====게임=====</option>
-                                        <option value="036570.KQ">엔씨소프트</option>
-                                        <option value="078340.KQ">컴투스</option>
-                                        <option value="207940.KQ">크래프톤</option>
-                                        <option value="112040.KQ">위메이드</option>
-                                        <option class="divider" disabled>=====배터리=====</option>
-                                        <option value="373220.KS">LG에너지솔루션</option>
-                                        <option value="006400.KS">삼성SDI</option>
-                                        <option value="086520.KQ">에코프로</option>
-                                        <option value="247540.KQ">에코프로비엠</option>
-                                        <option value="003670.KS">포스코퓨처엠</option>
-                                        <option class="divider" disabled>=====바이오=====</option>
-                                        <option value="128940.KS">한미약품</option>
-                                        <option value="000100.KS">유한양행</option>
-                                        <option value="069620.KQ">대웅제약</option>
-                                        <option value="207940.KS">삼성바이오로직스</option>
-                                        <option value="068270.KS">셀트리온</option>
-                                        <option value="185750.KQ">종근당</option>
-                                        <option value="302440.KQ">SK바이오사이언스</option>
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <div class="card mr-3 border-left-primary h-100">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="card-body p-2">삼성전자</div>
-                                                        <input type="hidden" value="005930.KS">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button class="btn" onclick="remove_btn(this)">X</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card mr-3 border-left-secondary h-100">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="card-body p-2">KB금융</div>
-                                                        <input type="hidden" value="105560.KS">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button class="btn" onclick="remove_btn(this)">X</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card mr-3 border-left-success h-100">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="card-body p-2">셀트리온</div>
-                                                        <input type="hidden" value="068270.KS">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button class="btn" onclick="remove_btn(this)">X</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card mr-3 border-left-info h-100">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="card-body p-2">삼성SDI</div>
-                                                        <input type="hidden" value="006400.KS">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button class="btn" onclick="remove_btn(this)">X</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card mr-3 border-left-warning h-100">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="card-body p-2">현대차</div>
-                                                        <input type="hidden" value="005380.KS">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button class="btn" onclick="remove_btn(this)">X</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card mr-3 border-left-danger h-100">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="card-body p-2">SK텔레콤</div>
-                                                        <input type="hidden" value="017670.KS">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button class="btn" onclick="remove_btn(this)">X</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card mr-3 border-left-dark h-100">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="card-body p-2">LG화학</div>
-                                                        <input type="hidden" value="051910.KS">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button class="btn" onclick="remove_btn(this)">X</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body d-flex">
-                            <div id="piechart2" class="mr-5" style="width: 500px; height: 500px;"></div>
-                            <div id="chart_div2" class="ml-5" style="width: 900px; height: 500px;"></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
-                                    <thead>
-                                        <th>Sharpe ratio</th>
-                                        <th>포트폴리오 기대수익률</th>
-                                        <th>포트폴리오 변동성</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                            <h6 class="m-0 font-weight-bold text-primary">MP3</h6>
-                            <div class="navbar-nav ml-auto">
-                                <div class="nav-item dropdown">
-                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP3', this.value, assetList_mp3)">
-                                        <option disabled selected>Risk gauge</option>
-                                        <option value="high">상</option>
-                                        <option value="medium">중</option>
-                                        <option value="low">하</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </nav>
-                        <div class="card-body" id="mp3_selectbox">
-                            <div class="row mr-0 ml-0 mb-2">
-                                <div class="row-col-1">
-                                    <select name="dataTable_length" aria-controls="dataTable" class="custom-select form-control form-control-sm" onchange="add_btn(this)">
-                                        <option disabled selected>자산선택</option>
-                                        <option disabled>=====글로벌자산=====</option>
-                                        <option value="IGLB">IGLB(장기투자채권)</option>
-                                        <option value="HYG">HYG(고수익채권)</option>
-                                        <option value="SPY">SPY(S&P500)</option>
-                                        <option value="MBB">MBB(모기지)</option>
-                                        <option value="SOXX">SOXX(반도체)</option>
-                                        <option value="URA">URA(핵)</option>
-                                        <option value="PAVE">PAVE(인프라)</option>
-                                        <option class="divider" disabled>=====반도체=====</option>
-                                        <option value="005930.KS">삼성전자</option>
-                                        <option value="000660.KS">SK하이닉스</option>
-                                        <option class="divider" disabled>=====반도체장비=====</option>
-                                        <option value="000990.KS">DB하이텍</option>
-                                        <option value="042700.KQ">한미반도체</option>
-                                        <option value="005290.KS">동진쎄미켐</option>
-                                        <option value="240810.KQ">원익IPS</option>
-                                        <option value="011930.KS">신성이엔지</option>
-                                        <option value="058470.KQ">리노공업</option>
-                                        <option value="036930.KQ">주성엔지니어링</option>
-                                        <option value="036830.KQ">솔브레인</option>
-                                        <option value="092220.KQ">KEC</option>
-                                        <option value="067310.KQ">하나마이크론</option>
-                                        <option class="divider" disabled>=====자동차=====</option>
-                                        <option value="005380.KS">현대차</option>
-                                        <option value="000270.KS">기아</option>
-                                        <option value="012330.KS">현대모비스</option>
-                                        <option class="divider" disabled>=====은행=====</option>
-                                        <option value="105560.KS">KB금융</option>
-                                        <option value="055550.KS">신한금융</option>
-                                        <option value="086790.KS">하나금융</option>
-                                        <option class="divider" disabled>=====보험=====</option>
-                                        <option value="032830.KS">삼성생명</option>
-                                        <option value="000810.KS">삼성화재</option>
-                                        <option class="divider" disabled>=====증권=====</option>
-                                        <option value="016360.KS">삼성증권</option>
-                                        <option value="006800.KS">미래에셋</option>
-                                        <option value="005940.KS">NH투자증권</option>
-                                        <option class="divider" disabled>=====정유=====</option>
-                                        <option value="034730.KS">SK이노베이션</option>
-                                        <option value="010950.KS">S-OIL</option>
-                                        <option value="078930.KS">GS</option>
-                                        <option class="divider" disabled>=====화학=====</option>
-                                        <option value="011170.KS">롯데케미칼</option>
-                                        <option value="051910.KS">LG화학</option>
-                                        <option class="divider" disabled>=====음식료=====</option>
-                                        <option value="097950.KS">CJ제일제당</option>
-                                        <option value="004370.KS">농심</option>
-                                        <option value="271560.KS">오리온</option>
-                                        <option class="divider" disabled>=====화장품=====</option>
-                                        <option value="090430.KS">아모레퍼시픽</option>
-                                        <option value="192820.KQ">코스맥스</option>
-                                        <option value="161890.KQ">한국콜마</option>
-                                        <option class="divider" disabled>=====통신=====</option>
-                                        <option value="017670.KS">SK텔레콤</option>
-                                        <option value="030200.KS">KT</option>
-                                        <option value="032640.KS">LG유플러스</option>
-                                        <option class="divider" disabled>=====전기가스=====</option>
-                                        <option value="015760.KS">한국전력</option>
-                                        <option value="036460.KS">한국가스공사</option>
-                                        <option value="051600.KS">한전KPS</option>
-                                        <option class="divider" disabled>=====인터넷=====</option>
-                                        <option value="035420.KS">네이버</option>
-                                        <option value="035720.KS">카카오</option>
-                                        <option class="divider" disabled>=====게임=====</option>
-                                        <option value="036570.KQ">엔씨소프트</option>
-                                        <option value="078340.KQ">컴투스</option>
-                                        <option value="207940.KQ">크래프톤</option>
-                                        <option value="112040.KQ">위메이드</option>
-                                        <option class="divider" disabled>=====배터리=====</option>
-                                        <option value="373220.KS">LG에너지솔루션</option>
-                                        <option value="006400.KS">삼성SDI</option>
-                                        <option value="086520.KQ">에코프로</option>
-                                        <option value="247540.KQ">에코프로비엠</option>
-                                        <option value="003670.KS">포스코퓨처엠</option>
-                                        <option class="divider" disabled>=====바이오=====</option>
-                                        <option value="128940.KS">한미약품</option>
-                                        <option value="000100.KS">유한양행</option>
-                                        <option value="069620.KQ">대웅제약</option>
-                                        <option value="207940.KS">삼성바이오로직스</option>
-                                        <option value="068270.KS">셀트리온</option>
-                                        <option value="185750.KQ">종근당</option>
-                                        <option value="302440.KQ">SK바이오사이언스</option>
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <div class="card mr-3 border-left-primary h-100">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="card-body p-2">Nasdaq(나스닥)</div>
-                                                        <input type="hidden" value="NDAQ">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button class="btn" onclick="remove_btn(this)">X</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card mr-3 border-left-secondary h-100">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="card-body p-2">SPY(S&P500)</div>
-                                                        <input type="hidden" value="SPY">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button class="btn" onclick="remove_btn(this)">X</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card mr-3 border-left-success h-100">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="card-body p-2">KOSPI(코스피)</div>
-                                                        <input type="hidden" value="^KS11">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button class="btn" onclick="remove_btn(this)">X</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="card-body d-flex">
                             <div id="piechart3" class="mr-5" style="width: 500px; height: 500px;"></div>
                             <div id="chart_div3" class="ml-5" style="width: 900px; height: 500px;"></div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable5" width="100%" cellspacing="0">
                                     <thead>
-                                        <th>Sharpe ratio</th>
+                                        <th>포트폴리오 Sharpe ratio</th>
                                         <th>포트폴리오 기대수익률</th>
                                         <th>포트폴리오 변동성</th>
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable6" width="100%" cellspacing="0">
+                                    <thead>
+                                        <th></th>
+                                        <th>Nasdaq</th>
+                                        <th>S&P500</th>
+                                        <th>KOSPI</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>기대수익률</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th>변동성</th>
                                             <td></td>
                                             <td></td>
                                             <td></td>

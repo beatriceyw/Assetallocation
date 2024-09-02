@@ -8,7 +8,7 @@ from scipy.optimize import Bounds
 from scipy.optimize import LinearConstraint
 
 # model 포플 riskgauge == 상
-def mp_set_max_sharpe(tickers):
+def mp_set_max_sharpe(tickers, start_date, end_date):
 
     np.set_printoptions(suppress=True, precision=2)
     
@@ -17,7 +17,7 @@ def mp_set_max_sharpe(tickers):
 
     # 주가 데이터 다운로드
     for t in tickers:
-        df1[t] = yf.download(t, ignore_tz=True)['Adj Close']
+        df1[t] = yf.download(t, start=start_date, end=end_date, ignore_tz=True)['Adj Close']
 
     # 일일 수익률 계산
     df2 = df1.pct_change(fill_method=None)
@@ -83,7 +83,7 @@ def mp_set_max_sharpe(tickers):
 
     return data
 # model 포플 riskgauge == 하
-def mp_set_min_volatility(tickers):
+def mp_set_min_volatility(tickers, start_date, end_date):
 
     np.set_printoptions(suppress=True, precision=2)
     
@@ -92,7 +92,7 @@ def mp_set_min_volatility(tickers):
 
     # 주가 데이터 다운로드
     for t in tickers:
-        df1[t] = yf.download(t, ignore_tz=True)['Adj Close']
+        df1[t] = yf.download(t, start=start_date, end=end_date, ignore_tz=True)['Adj Close']
 
     # 일일 수익률 계산
     df2 = df1.pct_change(fill_method=None)
@@ -163,7 +163,7 @@ def mp_set_min_volatility(tickers):
     
     return data
 # model 포플 riskgauge == 중
-def mp_set_medium(tickers):
+def mp_set_medium(tickers, start_date, end_date):
     
     np.set_printoptions(suppress=True, precision=2)
     
@@ -172,7 +172,8 @@ def mp_set_medium(tickers):
 
     # 주가 데이터 다운로드
     for t in tickers:
-        df1[t] = yf.download(t, ignore_tz=True)['Adj Close']
+        df1[t] = yf.download(t, start=start_date, end=end_date, ignore_tz=True)['Adj Close']
+        
 
     # 일일 수익률 계산
     df2 = df1.pct_change(fill_method=None)

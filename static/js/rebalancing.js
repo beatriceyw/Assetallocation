@@ -4,25 +4,37 @@ window.onload = function(){
     google.charts.setOnLoadCallback(drawChart);
     google.charts.setOnLoadCallback(drawMaterial);
 
-    // 요소 선택 및 배열 변환
-    var assetNodeList_mp1 = document.getElementById("mp1_selectbox").querySelector(".col").querySelectorAll("input[type='hidden']");
-    var assetNodeList_mp2 = document.getElementById("mp2_selectbox").querySelector(".col").querySelectorAll("input[type='hidden']");
-    var assetNodeList_mp3 = document.getElementById("mp3_selectbox").querySelector(".col").querySelectorAll("input[type='hidden']");
-
-    var assetList_mp1 = Array.from(assetNodeList_mp1).map(input => input.value);
-    var assetList_mp2 = Array.from(assetNodeList_mp2).map(input => input.value);
-    var assetList_mp3 = Array.from(assetNodeList_mp3).map(input => input.value);
-
     // 각 자산 목록에 대해 AJAX 요청 보내기
-    sendAjaxRequest("MP1", "medium", assetList_mp1);
-    sendAjaxRequest("MP2", "medium", assetList_mp2);
-    sendAjaxRequest("MP3", "medium", assetList_mp3);
+    sendAjaxRequest("MP1", "medium");
+    sendAjaxRequest("MP2", "medium");
+    sendAjaxRequest("MP3", "medium");
 }
 
 // AJAX 요청 함수
-function sendAjaxRequest(mp_ver, risk_gauge, assetList) {
+function sendAjaxRequest(mp_ver, risk_gauge) {
+    var assetList;
+    var assetNodeList;
+    var start_date;
+    var end_date;
+
+    if(mp_ver == "MP1"){
+        assetNodeList = document.getElementById("mp1_selectbox").querySelector(".col").querySelectorAll("input[type='hidden']");
+        assetList = Array.from(assetNodeList).map(input => input.value);
+        start_date = document.getElementById("start_date1").value
+        end_date = document.getElementById("end_date1").value
+    }else if(mp_ver == "MP2"){
+        assetNodeList = document.getElementById("mp2_selectbox").querySelector(".col").querySelectorAll("input[type='hidden']");
+        assetList = Array.from(assetNodeList).map(input => input.value);
+        start_date = document.getElementById("start_date2").value
+        end_date = document.getElementById("end_date2").value
+    }else if(mp_ver == "MP3"){
+        assetNodeList = document.getElementById("mp3_selectbox").querySelector(".col").querySelectorAll("input[type='hidden']");
+        assetList = Array.from(assetNodeList).map(input => input.value);
+        start_date = document.getElementById("start_date3").value
+        end_date = document.getElementById("end_date3").value
+    }
     $.ajax({
-        data: JSON.stringify({"mp_ver": mp_ver, "risk_gauge": risk_gauge, "tickers": JSON.stringify(assetList) }),
+        data: JSON.stringify({"mp_ver": mp_ver, "risk_gauge": risk_gauge, "tickers": JSON.stringify(assetList), "start_date": start_date, "end_date": end_date}),
         type: "POST",
         url: "/assetAllocation/rebalancing",
         contentType: "application/json",
@@ -122,17 +134,47 @@ function drawMaterial(mp_ver, assetList, asset_data) {
 // sharpe ratio, 기대수익률, 변동성 Table 
 function drawTable(mp_ver, assetList, asset_data){
     if (mp_ver == "MP1" && asset_data){
+        // MP1 Table
         document.getElementById("dataTable1").getElementsByTagName('td')[0].innerText = asset_data.sharpe_ratio
         document.getElementById("dataTable1").getElementsByTagName('td')[1].innerText = asset_data.port_ret
         document.getElementById("dataTable1").getElementsByTagName('td')[2].innerText = asset_data.port_vol
+        // Nasdaq Table
+        document.getElementById("dataTable2").getElementsByTagName('td')[0].innerText = asset_data.index_port_ret[0]
+        document.getElementById("dataTable2").getElementsByTagName('td')[3].innerText = asset_data.index_port_vol[0]
+        // s&p500 Table
+        document.getElementById("dataTable2").getElementsByTagName('td')[1].innerText = asset_data.index_port_ret[1]
+        document.getElementById("dataTable2").getElementsByTagName('td')[4].innerText = asset_data.index_port_vol[1]
+        // kospi Table
+        document.getElementById("dataTable2").getElementsByTagName('td')[2].innerText = asset_data.index_port_ret[2]
+        document.getElementById("dataTable2").getElementsByTagName('td')[5].innerText = asset_data.index_port_vol[2]
     }else if(mp_ver == "MP2" && asset_data){
-        document.getElementById("dataTable2").getElementsByTagName('td')[0].innerText = asset_data.sharpe_ratio
-        document.getElementById("dataTable2").getElementsByTagName('td')[1].innerText = asset_data.port_ret
-        document.getElementById("dataTable2").getElementsByTagName('td')[2].innerText = asset_data.port_vol
-    }else if(mp_ver == "MP3" && asset_data){
+        // MP2 Table
         document.getElementById("dataTable3").getElementsByTagName('td')[0].innerText = asset_data.sharpe_ratio
         document.getElementById("dataTable3").getElementsByTagName('td')[1].innerText = asset_data.port_ret
         document.getElementById("dataTable3").getElementsByTagName('td')[2].innerText = asset_data.port_vol
+        // Nasdaq Table
+        document.getElementById("dataTable4").getElementsByTagName('td')[0].innerText = asset_data.index_port_ret[0]
+        document.getElementById("dataTable4").getElementsByTagName('td')[3].innerText = asset_data.index_port_vol[0]
+        // s&p500 Table
+        document.getElementById("dataTable4").getElementsByTagName('td')[1].innerText = asset_data.index_port_ret[1]
+        document.getElementById("dataTable4").getElementsByTagName('td')[4].innerText = asset_data.index_port_vol[1]
+        // kospi Table
+        document.getElementById("dataTable4").getElementsByTagName('td')[2].innerText = asset_data.index_port_ret[2]
+        document.getElementById("dataTable4").getElementsByTagName('td')[5].innerText = asset_data.index_port_vol[2]
+    }else if(mp_ver == "MP3" && asset_data){
+        // MP3 Table
+        document.getElementById("dataTable5").getElementsByTagName('td')[0].innerText = asset_data.sharpe_ratio
+        document.getElementById("dataTable5").getElementsByTagName('td')[1].innerText = asset_data.port_ret
+        document.getElementById("dataTable5").getElementsByTagName('td')[2].innerText = asset_data.port_vol
+        // Nasdaq Table
+        document.getElementById("dataTable6").getElementsByTagName('td')[0].innerText = asset_data.index_port_ret[0]
+        document.getElementById("dataTable6").getElementsByTagName('td')[3].innerText = asset_data.index_port_vol[0]
+        // s&p500 Table
+        document.getElementById("dataTable6").getElementsByTagName('td')[1].innerText = asset_data.index_port_ret[1]
+        document.getElementById("dataTable6").getElementsByTagName('td')[4].innerText = asset_data.index_port_vol[1]
+        // kospi Table
+        document.getElementById("dataTable6").getElementsByTagName('td')[2].innerText = asset_data.index_port_ret[2]
+        document.getElementById("dataTable6").getElementsByTagName('td')[5].innerText = asset_data.index_port_vol[2]
     }
 }
 function remove_btn(btn_class){
@@ -186,28 +228,22 @@ function add_btn(btn_class){
             var mp_ver = btn_class.closest('.card-body').previousElementSibling.querySelector('h6').textContent
             var risk_gauge = btn_class.closest('.card-body').previousElementSibling.querySelector('select').value
             if(mp_ver == "MP1"){
-                var assetNodeList_mp1 = document.getElementById("mp1_selectbox").querySelector(".col").querySelectorAll("input[type='hidden']");
-                var assetList_mp1 = Array.from(assetNodeList_mp1).map(input => input.value);
                 if(risk_gauge = "Risk gauge"){
-                    sendAjaxRequest(mp_ver, "medium", assetList_mp1)
+                    sendAjaxRequest(mp_ver, "medium")
                 }else{
-                    sendAjaxRequest(mp_ver, risk_gauge, assetList_mp1)
+                    sendAjaxRequest(mp_ver, risk_gauge)
                 }
             }else if(mp_ver == "MP2"){
-                var assetNodeList_mp2 = document.getElementById("mp2_selectbox").querySelector(".col").querySelectorAll("input[type='hidden']");
-                var assetList_mp2 = Array.from(assetNodeList_mp2).map(input => input.value);
                 if(risk_gauge = "Risk gauge"){
-                    sendAjaxRequest(mp_ver, "medium", assetList_mp2)
+                    sendAjaxRequest(mp_ver, "medium")
                 }else{
-                    sendAjaxRequest(mp_ver, risk_gauge, assetList_mp2)
+                    sendAjaxRequest(mp_ver, risk_gauge)
                 }
             }else if(mp_ver == "MP3"){
-                var assetNodeList_mp3 = document.getElementById("mp3_selectbox").querySelector(".col").querySelectorAll("input[type='hidden']");
-                var assetList_mp3 = Array.from(assetNodeList_mp3).map(input => input.value);
                 if(risk_gauge = "Risk gauge"){
-                    sendAjaxRequest(mp_ver, "medium", assetList_mp3)
+                    sendAjaxRequest(mp_ver, "medium")
                 }else{
-                    sendAjaxRequest(mp_ver, risk_gauge, assetList_mp3)
+                    sendAjaxRequest(mp_ver, risk_gauge)
                 }
             } 
         }
