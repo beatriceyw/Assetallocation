@@ -15,17 +15,17 @@ router = APIRouter(
 )
 
 @router.get('/login')
-def loginRoute(request: Request):
+def get_loginRoute(request: Request):
     
     return templates.TemplateResponse('login.html', 
                             context={'request':request})
     
 @router.post('/login')
-def loginRoute(request: Request, email: Annotated[str, Form()], password: Annotated[str, Form()]):
+def post_login(request: Request, email: Annotated[str, Form()], password: Annotated[str, Form()]):
     try:
         user_info = loginDto.loginRequestDto(email=email)
         response = loginService.get_user_info(user_info)
-        
+
         if response is None:
             data = {
                 "result": 0, 
@@ -56,7 +56,7 @@ def loginRoute(request: Request, email: Annotated[str, Form()], password: Annota
         raise Exception(status_code=500, detail="Internal Server Error")
     
 @router.get('/logout')
-def loginRoute(request: Request):
+def get_loginout(request: Request):
     try:
         session.clear_session(request)
         

@@ -29,7 +29,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">MP1</h6>
                             <div class="navbar-nav ml-auto">
                                 <div class="nav-item dropdown">
-                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP1', this.value)">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP1')">
                                         <option disabled selected>Risk gauge</option>
                                         <option value="high">상</option>
                                         <option value="medium">중</option>
@@ -40,13 +40,16 @@
                         </nav>
                         <div class="card-body" id="mp1_selectbox">
                             <div class="row mr-0 ml-0 mb-2">
-                                <div class="mb-2 mt-2">
-                                    <label for="start_date1">START DATE: </label>
-                                    <input type="date" class="bg-white border rounded p-1" id="start_date1" name="start_date1" text="시작일" value="2002-06-20">
-                                    <label for="end_date1">END DATE: </label>
-                                    <input type="date" class="bg-white border rounded p-1" id="end_date1" name="end_date1" text="종료일" value="2024-06-20">
-                                    <input type="hidden" name="mp_ver" value="mp1">
-                                </div>
+                                <form action="javascript:sendAjaxRequest('MP1')" accept-charset="UTF-8">
+                                    <div class="mb-2 mt-2">
+                                        <label for="start_date1">START DATE: </label>
+                                        <input type="date" class="bg-white border rounded p-1" id="start_date1" name="start_date1" text="시작일" value="2002-06-20">
+                                        <label for="end_date1">END DATE: </label>
+                                        <input type="date" class="bg-white border rounded p-1" id="end_date1" name="end_date1" text="종료일" value="2024-06-20">
+                                        <input type="hidden" name="mp_ver" value="mp1">
+                                        <input type="submit" class="bg-white border rounded p-1" value="확인">
+                                    </div>
+                                </form>
                             </div>
                             <div class="row mr-0 ml-0 mb-2">
                                 <div class="row-col-1">
@@ -518,7 +521,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">MP2</h6>
                             <div class="navbar-nav ml-auto">
                                 <div class="nav-item dropdown">
-                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP2', this.value)">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP2')">
                                         <option disabled selected>Risk gauge</option>
                                         <option value="high">상</option>
                                         <option value="medium">중</option>
@@ -529,13 +532,16 @@
                         </nav>
                         <div class="card-body" id="mp2_selectbox">
                             <div class="row mr-0 ml-0 mb-2">
-                                <div class="mb-2 mt-2">
-                                    <label for="start_date2">START DATE: </label>
-                                    <input type="date" class="bg-white border rounded p-1" id="start_date2" name="start_date2" text="시작일" value="2002-06-20">
-                                    <label for="end_date2">END DATE: </label>
-                                    <input type="date" class="bg-white border rounded p-1" id="end_date2" name="end_date2" text="종료일" value="2024-06-20">
-                                    <input type="hidden" name="mp_ver" value="mp2">
-                                </div>
+                                <form action="javascript:sendAjaxRequest('MP2')" accept-charset="UTF-8">
+                                    <div class="mb-2 mt-2">
+                                        <label for="start_date2">START DATE: </label>
+                                        <input type="date" class="bg-white border rounded p-1" id="start_date2" name="start_date2" text="시작일" value="2002-06-20">
+                                        <label for="end_date2">END DATE: </label>
+                                        <input type="date" class="bg-white border rounded p-1" id="end_date2" name="end_date2" text="종료일" value="2024-06-20">
+                                        <input type="hidden" name="mp_ver" value="mp2">
+                                        <input type="submit" class="bg-white border rounded p-1" value="확인">
+                                    </div>
+                                </form>
                             </div>
                             <div class="row mr-0 ml-0 mb-2">
                                 <div class="row-col-1">
@@ -999,7 +1005,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">MP3</h6>
                             <div class="navbar-nav ml-auto">
                                 <div class="nav-item dropdown">
-                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP3', this.value)">
+                                    <select name="dataTable_length" aria-controls="dataTable" class="bg-transparent border-0 custom-select form-control form-control-sm" onchange="sendAjaxRequest('MP3')">
                                         <option disabled selected>Risk gauge</option>
                                         <option value="high">상</option>
                                         <option value="medium">중</option>
@@ -1010,13 +1016,16 @@
                         </nav>
                         <div class="card-body" id="mp3_selectbox">
                             <div class="row mr-0 ml-0 mb-2">
-                                <div class="mb-2 mt-2">
-                                    <label for="start_date3">START DATE: </label>
-                                    <input type="date" class="bg-white border rounded p-1" id="start_date3" name="start_date3" text="시작일" value="2002-06-20">
-                                    <label for="end_date3">END DATE: </label>
-                                    <input type="date" class="bg-white border rounded p-1" id="end_date3" name="end_date3" text="종료일" value="2024-06-20">
-                                    <input type="hidden" name="mp_ver" value="mp3">
-                                </div>
+                                <form action="javascript:sendAjaxRequest('MP3')" accept-charset="UTF-8">
+                                    <div class="mb-2 mt-2">
+                                        <label for="start_date3">START DATE: </label>
+                                        <input type="date" class="bg-white border rounded p-1" id="start_date3" name="start_date3" text="시작일" value="2002-06-20">
+                                        <label for="end_date3">END DATE: </label>
+                                        <input type="date" class="bg-white border rounded p-1" id="end_date3" name="end_date3" text="종료일" value="2024-06-20">
+                                        <input type="hidden" name="mp_ver" value="mp3">
+                                        <input type="submit" class="bg-white border rounded p-1" value="확인">
+                                    </div>
+                                </form>
                             </div>
                             <div class="row mr-0 ml-0 mb-2">
                                 <div class="row-col-1">
@@ -1217,8 +1226,8 @@
                                             <div class="col mr-2">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col-auto">
-                                                        <div class="card-body p-2">SOXX(반도체)</div>
-                                                        <input type="hidden" value="SOXX">
+                                                        <div class="card-body p-2">BOTZ(로봇)</div>
+                                                        <input type="hidden" value="BOTZ">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1232,8 +1241,8 @@
                                             <div class="col mr-2">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col-auto">
-                                                        <div class="card-body p-2">URA(핵)</div>
-                                                        <input type="hidden" value="URA">
+                                                        <div class="card-body p-2">ICLN(친환경)</div>
+                                                        <input type="hidden" value="ICLN">
                                                     </div>
                                                 </div>
                                             </div>

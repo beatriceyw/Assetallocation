@@ -5,33 +5,50 @@ window.onload = function(){
     google.charts.setOnLoadCallback(drawMaterial);
 
     // 각 자산 목록에 대해 AJAX 요청 보내기
-    sendAjaxRequest("MP1", "medium");
-    sendAjaxRequest("MP2", "medium");
-    sendAjaxRequest("MP3", "medium");
+    sendAjaxRequest("MP1");
+    sendAjaxRequest("MP2");
+    sendAjaxRequest("MP3");
 }
-
 // AJAX 요청 함수
-function sendAjaxRequest(mp_ver, risk_gauge) {
+function sendAjaxRequest(mp_ver) {
     var assetList;
     var assetNodeList;
     var start_date;
     var end_date;
-
+    var risk_gauge;
     if(mp_ver == "MP1"){
         assetNodeList = document.getElementById("mp1_selectbox").querySelector(".col").querySelectorAll("input[type='hidden']");
         assetList = Array.from(assetNodeList).map(input => input.value);
         start_date = document.getElementById("start_date1").value
         end_date = document.getElementById("end_date1").value
+        risk_gauge = document.querySelectorAll("select")[0].value
+        if(risk_gauge = "Risk gauge"){
+            risk_gauge = "medium"
+        }else{
+            risk_gauge = risk_gauge
+        }
     }else if(mp_ver == "MP2"){
         assetNodeList = document.getElementById("mp2_selectbox").querySelector(".col").querySelectorAll("input[type='hidden']");
         assetList = Array.from(assetNodeList).map(input => input.value);
         start_date = document.getElementById("start_date2").value
         end_date = document.getElementById("end_date2").value
+        risk_gauge = document.querySelectorAll("select")[2].value
+        if(risk_gauge = "Risk gauge"){
+            risk_gauge = "medium"
+        }else{
+            risk_gauge = risk_gauge
+        }
     }else if(mp_ver == "MP3"){
         assetNodeList = document.getElementById("mp3_selectbox").querySelector(".col").querySelectorAll("input[type='hidden']");
         assetList = Array.from(assetNodeList).map(input => input.value);
         start_date = document.getElementById("start_date3").value
         end_date = document.getElementById("end_date3").value
+        risk_gauge = document.querySelectorAll("select")[4].value
+        if(risk_gauge = "Risk gauge"){
+            risk_gauge = "medium"
+        }else{
+            risk_gauge = risk_gauge
+        }
     }
     $.ajax({
         data: JSON.stringify({"mp_ver": mp_ver, "risk_gauge": risk_gauge, "tickers": JSON.stringify(assetList), "start_date": start_date, "end_date": end_date}),
@@ -226,26 +243,7 @@ function add_btn(btn_class){
         var slectedCount = btn_class.parentElement.nextElementSibling.childElementCount
         if (slectedCount == 7){
             var mp_ver = btn_class.closest('.card-body').previousElementSibling.querySelector('h6').textContent
-            var risk_gauge = btn_class.closest('.card-body').previousElementSibling.querySelector('select').value
-            if(mp_ver == "MP1"){
-                if(risk_gauge = "Risk gauge"){
-                    sendAjaxRequest(mp_ver, "medium")
-                }else{
-                    sendAjaxRequest(mp_ver, risk_gauge)
-                }
-            }else if(mp_ver == "MP2"){
-                if(risk_gauge = "Risk gauge"){
-                    sendAjaxRequest(mp_ver, "medium")
-                }else{
-                    sendAjaxRequest(mp_ver, risk_gauge)
-                }
-            }else if(mp_ver == "MP3"){
-                if(risk_gauge = "Risk gauge"){
-                    sendAjaxRequest(mp_ver, "medium")
-                }else{
-                    sendAjaxRequest(mp_ver, risk_gauge)
-                }
-            } 
+            sendAjaxRequest(mp_ver)
         }
     }
 }

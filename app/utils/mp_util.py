@@ -8,7 +8,7 @@ from scipy.optimize import Bounds
 from scipy.optimize import LinearConstraint
 
 # model 포플 riskgauge == 상
-def mp_set_max_sharpe(tickers, start_date, end_date):
+def mp_set_max_sharpe(tickers):
 
     np.set_printoptions(suppress=True, precision=2)
     
@@ -17,7 +17,7 @@ def mp_set_max_sharpe(tickers, start_date, end_date):
 
     # 주가 데이터 다운로드
     for t in tickers:
-        df1[t] = yf.download(t, start=start_date, end=end_date, ignore_tz=True)['Adj Close']
+        df1[t] = yf.download(t, ignore_tz=True)['Adj Close']
 
     # 일일 수익률 계산
     df2 = df1.pct_change(fill_method=None)
@@ -83,7 +83,7 @@ def mp_set_max_sharpe(tickers, start_date, end_date):
 
     return data
 # model 포플 riskgauge == 하
-def mp_set_min_volatility(tickers, start_date, end_date):
+def mp_set_min_volatility(tickers):
 
     np.set_printoptions(suppress=True, precision=2)
     
@@ -92,7 +92,7 @@ def mp_set_min_volatility(tickers, start_date, end_date):
 
     # 주가 데이터 다운로드
     for t in tickers:
-        df1[t] = yf.download(t, start=start_date, end=end_date, ignore_tz=True)['Adj Close']
+        df1[t] = yf.download(t, ignore_tz=True)['Adj Close']
 
     # 일일 수익률 계산
     df2 = df1.pct_change(fill_method=None)
@@ -163,7 +163,7 @@ def mp_set_min_volatility(tickers, start_date, end_date):
     
     return data
 # model 포플 riskgauge == 중
-def mp_set_medium(tickers, start_date, end_date):
+def mp_set_medium(tickers):
     
     np.set_printoptions(suppress=True, precision=2)
     
@@ -172,8 +172,7 @@ def mp_set_medium(tickers, start_date, end_date):
 
     # 주가 데이터 다운로드
     for t in tickers:
-        df1[t] = yf.download(t, start=start_date, end=end_date, ignore_tz=True)['Adj Close']
-        
+        df1[t] = yf.download(t, ignore_tz=True)['Adj Close']
 
     # 일일 수익률 계산
     df2 = df1.pct_change(fill_method=None)
@@ -288,3 +287,89 @@ def mp_coveriance(start_date, end_date, tickers):
     }
 
     return data
+# Efficient Frontier
+def efficientFrontier(start_date, end_date, tickers): 
+    
+    # 각 티커별 수익률을 직접 입력
+    returns = [0.046, 0.046, 0.13, 0.02, 0.18, 0.16, 0.012]  # 예시 수익률
+    
+    df = pd.DataFrame(data=[returns], columns=tickers)
+
+    # 연간화된 수익률 계산
+    r = df.iloc[0] * 100
+
+    # yfinance를 사용하여 과거 데이터 가져오기 (최근 1년치 데이터)
+    data = yf.download(tickers, start=start_date, end=end_date)['Adj Close']
+
+    # 일간 수익률 계산
+    historical_returns = data.pct_change(fill_method=None).dropna()
+
+    # 공분산 행렬 계산
+    covar = historical_returns.cov()
+
+    # 포트폴리오의 수익률과 변동성 계산 함수
+    def ret(r, w):
+        return r.dot(w)
+
+    def vol(w, covar):
+        return np.sqrt(np.dot(w, np.dot(covar, w)))
+
+    # HHI 계산 함수
+    def hhi(w):
+        return np.sum(np.square(w)) * 10000  # HHI 계산 (0~10000 범위)
+
+    # 개별 자산의 최소 5%, 최대 50% 가중치 제약 설정
+    min_weight = 0.05
+    max_weight = 0.5
+    bounds = Bounds([min_weight] * len(tickers), [max_weight] * len(tickers))
+
+    linear_constraint = LinearConstraint(np.ones((len(tickers),)), [1], [1])
+    weights = np.ones(len(tickers)) / len(tickers)  # 초기 가중치를 동등하게 설정
+    x0 = weights
+
+    # 최소 변동성 포트폴리오 찾기
+    fun1 = lambda w: vol(w, covar)
+    res = minimize(fun1, x0, method='trust-constr', constraints=linear_constraint, bounds=bounds)
+    w_min = res.x
+
+    np.set_printoptions(suppress=True, precision=2)
+
+    # 최대 샤프 비율 포트폴리오 찾기
+    fun2 = lambda w: -ret(r, w) / vol(w, covar)
+    res_sharpe = minimize(fun2, x0, method='trust-constr', constraints=linear_constraint, bounds=bounds)
+    w_sharpe = res_sharpe.x
+
+    w = w_min
+    num_ports = 200
+    gap = (ret(r, w_sharpe) - ret(r, w_min)) / (num_ports - 1)
+
+    all_weights = np.zeros((num_ports, len(df.columns)))
+    ret_arr = np.zeros(num_ports)
+    vol_arr = np.zeros(num_ports)
+    
+    for i in range(num_ports):
+        port_ret = ret(r, w_min) + i * gap
+        double_constraint = LinearConstraint([np.ones(len(tickers)), r], [1, port_ret], [1, port_ret])
+        
+        x0 = w_min
+        fun = lambda w: vol(w, covar)
+        a = minimize(fun, x0, method='trust-constr', constraints=double_constraint, bounds=bounds)
+        
+        if a.success and hhi(a.x) <= 4000:  # HHI 4000 이하 필터링
+            all_weights[i, :] = a.x
+            ret_arr[i] = port_ret
+            vol_arr[i] = vol(a.x, covar)
+        else:
+            print(f"Optimization failed at portfolio {i}")
+
+    data = {
+        "vol_arr": vol_arr.tolist(),
+        "ret_arr": np.round(ret_arr, 2).tolist(),
+        "all_weights": np.round(all_weights, 2).tolist(),
+        "returns": returns
+    }
+    
+    print(len(vol_arr.tolist()))
+    
+    return data
+    

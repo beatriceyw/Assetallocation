@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 from app.routes import loginRoute, forgotPasswordRoute, registerRoute, dashboardRoute
-from app.routes import assetInfoRoute, vcRoute, coverianceRoute, rebalancingRoute
+from app.routes import assetInfoRoute, vcRoute, coverianceRoute, expectedReturnRoute, rebalancingRoute
 from app.config import productionConfig as productionConfig
 from app.config import developmentConfig as developmentConfig
 from pydantic import ValidationError
@@ -20,6 +20,7 @@ def create_app():
     app.include_router(assetInfoRoute.router)
     app.include_router(coverianceRoute.router)
     app.include_router(rebalancingRoute.router)
+    app.include_router(expectedReturnRoute.router)
     app.include_router(loginRoute.router)
     app.include_router(forgotPasswordRoute.router)
     app.include_router(registerRoute.router)
